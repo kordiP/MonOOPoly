@@ -54,6 +54,30 @@ MyString::~MyString()
     freeMem();
 }
 
+MyString::MyString(MyString&& other) noexcept
+{
+    str = other.str;
+    other.str = nullptr;
+
+    size = other.size;
+    other.size = 0;
+}
+
+MyString& MyString::operator=(MyString&& other) noexcept
+{
+    if (this != &other)
+    {
+        freeMem();
+
+        str = other.str;
+        other.str = nullptr;
+
+        size = other.size;
+        other.size = 0;
+    }
+    return *this;
+}
+
 const char& MyString::operator[](int index) const
 {
     if (index < 0 || index > size)
@@ -89,9 +113,9 @@ MyString& MyString::operator+=(const MyString& mstr)
     return *this;
 }
 
-bool MyString::operator==(const MyString& mstr) const
+bool operator==(const MyString& lhs, const MyString& rhs)
 {
-    if (size != mstr.size || strcmp(str, mstr.str) != 0)
+    if (strcmp(lhs.c_str(), rhs.c_str()) != 0)
     {
         return false;
     }
@@ -99,14 +123,14 @@ bool MyString::operator==(const MyString& mstr) const
     return true;
 }
 
-bool MyString::operator!=(const MyString& mstr) const
+bool operator!=(const MyString& lhs, const MyString& rhs)
 {
-    return !(*this == mstr);
+    return !(lhs == rhs);
 }
 
-bool MyString::operator<(const MyString& mstr) const
+bool operator<(const MyString& lhs, const MyString& rhs)
 {
-    if (size > mstr.size || strcmp(str, mstr.str) > 0)
+    if (strcmp(lhs.c_str(), rhs.c_str()) > 0)
     {
         return false;
     }
@@ -114,103 +138,19 @@ bool MyString::operator<(const MyString& mstr) const
     return true;
 }
 
-bool MyString::operator>(const MyString& mstr) const
+bool operator>(const MyString& lhs, const MyString& rhs)
 {
-    return mstr < *this;
+    return rhs < lhs;
 }
 
-bool MyString::operator>=(const MyString& mstr) const
+bool operator >=(const MyString& lhs, const MyString& rhs)
 {
-    return !(*this > mstr);
+    return !(lhs > rhs);
 }
 
-bool MyString::operator<=(const MyString& mstr) const
+bool operator <=(const MyString & lhs, const MyString & rhs)
 {
-    return !(*this < mstr);
-}
-
-MyString& MyString::doubleToString(double num) const
-{
-    MyString result;
-
-    long long intPart = (long long)(num);
-    double fracPart = num - intPart;
-
-    if (intPart == 0) {
-        result = result + '0';
-    }
-    else {
-        MyString intStr;
-        while (intPart > 0) {
-            intStr = (char)('0' + (intPart % 10)) + intStr;
-            intPart /= 10;
-        }
-        result += intStr;
-    }
-
-    result += ".";
-
-    for (int i = 0; i < 2; ++i) {
-        fracPart *= 10;
-        int digit = (int)(fracPart);
-        result = result + (char)('0' + digit);
-        fracPart -= digit;
-    }
-
-    return result;
-}
-
-int MyString::asciiToInt() const
-{
-    int result = 0;
-    for (int i = 0; i < size; ++i) {
-        char c = str[i];
-        if (c >= '0' && c <= '9') {
-            result = result * 10 + (c - '0');
-        }
-        else {
-            throw std::invalid_argument("Something went wrong.");
-        }
-    }
-    return result;
-}
-
-double MyString::asciiToDouble() const
-{
-    int i = 0;
-    int len = size;
-    double result = 0.0;
-    bool isNegative = false;
-
-    // Skip leading spaces
-    while (i < len && str[i] == ' ') {
-        i++;
-    }
-
-    // Handle sign
-    if (i < len && (str[i] == '-' || str[i] == '+')) {
-        isNegative = (str[i] == '-');
-        i++;
-    }
-
-    // Integer part
-    while (i < len && str[i] >= '0' && str[i] <= '9') {
-        result = result * 10 + (str[i] - '0');
-        i++;
-    }
-
-    // Fractional part
-    if (i < len && str[i] == '.') {
-        i++;
-        double divisor = 10.0;
-        while (i < len && str[i] >= '0' && str[i] <= '9') {
-            result += (str[i] - '0') / divisor;
-            divisor *= 10.0;
-            i++;
-        }
-    }
-
-    return isNegative ? -result : result;
+    return !(rhs < lhs);
 }
 
 size_t MyString::find(char symbol, size_t skip) const

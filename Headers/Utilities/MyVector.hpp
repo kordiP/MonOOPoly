@@ -5,33 +5,44 @@
 #pragma once
 #include <iostream>
 
+namespace
+{
+	const size_t DEFAULT_CAPACITY = 4;
+}
+
 template <typename T>
 class MyVector
 {
 private:
 	T* data;
-	size_t size;
-	size_t capacity;
+	size_t size = 0;
+	size_t capacity = DEFAULT_CAPACITY;
 
 	void copyFrom(const MyVector& other);
 	void freeMem();
 	void resize();
-	size_t getCapacity() const;
+	void moveFrom(MyVector<T>&& other);
 public:
 	MyVector();
 	MyVector(const MyVector& other);
+	MyVector(MyVector&& other);
 	MyVector& operator=(const MyVector& other);
+	MyVector& operator=(MyVector&& other);
 	~MyVector();
 
 	void pushBack(const T& element);
+	void pushBack(T&& element);
 	T popBack();
-	void insert(const T& element, int pos);
+
+	void insert(const T& element, size_t pos);
 	void removeAt(int pos);
 	void remove(T& element);
+
 	const T& operator[](int index) const;
 	T& operator[](int index);
 	bool contains(const T& element) const;
 	size_t getSize() const;
+
 	void print() const;
 	void clear();
 };
@@ -43,6 +54,7 @@ void MyVector<T>::copyFrom(const MyVector<T>& other)
 	capacity = other.capacity;
 
 	data = new T[capacity];
+
 	for (size_t i = 0; i < size; i++)
 	{
 		data[i] = other.data[i];
@@ -53,6 +65,10 @@ template<typename T>
 void MyVector<T>::freeMem()
 {
 	delete[] data;
+	data = nullptr;
+
+	capacity = DEFAULT_CAPACITY;
+	size = 0;
 }
 
 template<typename T>
@@ -63,15 +79,28 @@ void MyVector<T>::resize()
 
 	for (size_t i = 0; i < size; i++)
 	{
-		temp[i] = data[i];
+		temp[i] = std::move(data[i]);
 	}
 
-	freeMem();
+	delete[] data;
 	data = temp;
 }
 
 template<typename T>
-MyVector<T>::MyVector() : size(0), capacity(4)
+void MyVector<T>::moveFrom(MyVector<T>&& other)
+{
+	size = other.size;
+	other.size = 0;
+
+	capacity = other.capacity;
+	other.capacity = 0;
+
+	data = other.data;
+	other.data = nullptr;
+}
+
+template<typename T>
+MyVector<T>::MyVector()
 {
 	data = new T[capacity];
 }
@@ -95,6 +124,23 @@ MyVector<T>& MyVector<T>::operator=(const MyVector<T>& other)
 }
 
 template<typename T>
+MyVector<T>::MyVector(MyVector<T>&& other)
+{
+	moveFrom(std::move(other));
+}
+
+template<typename T>
+MyVector<T>& MyVector<T>::operator=(MyVector<T>&& other)
+{
+	if (this != &other)
+	{
+		delete[] data;
+		moveFrom(std::move(other));
+	}
+	return *this;
+}
+
+template<typename T>
 MyVector<T>::~MyVector()
 {
 	freeMem();
@@ -112,21 +158,33 @@ void MyVector<T>::pushBack(const T& element)
 }
 
 template<typename T>
+void MyVector<T>::pushBack(T&& element)
+{
+	if (size >= capacity)
+	{
+		resize();
+	}
+
+	data[size++] = std::move(element);
+}
+
+template<typename T>
 T MyVector<T>::popBack()
 {
 	if (size <= 0)
 	{
 		throw std::out_of_range("Zero size.");
 	}
+	
 	return data[--size];
 }
 
 template<typename T>
-void MyVector<T>::insert(const T& element, int pos)
+void MyVector<T>::insert(const T& element, size_t pos)
 {
-	if (pos < 0 || pos >= size)
+	if (pos >= size)
 	{
-		throw std::out_of_range("Cannot insert, out of range.");
+		throw std::out_of_range("Invalid index.");
 	}
 
 	if (size + 1 >= capacity)
@@ -134,17 +192,14 @@ void MyVector<T>::insert(const T& element, int pos)
 		resize();
 	}
 
-	T temp = data[pos];
-	data[pos] = element;
+	size++;
 
-	for (size_t i = pos + 1; i < size; i++)
+	for (int i = size - 1; i > pos; i--)
 	{
-		T temp1 = data[i];
-		data[i] = temp;
-		temp = temp1;
+		data[i] = std::move(data[i - 1]);
 	}
 
-	data[size++] = temp;
+	data[pos] = element;
 }
 
 template<typename T>
@@ -178,6 +233,8 @@ void MyVector<T>::remove(T& element)
 			return;
 		}
 	}
+
+	throw std::invalid_argument("Element not found.");
 }
 
 template<typename T>
@@ -212,6 +269,7 @@ bool MyVector<T>::contains(const T& element) const
 			return true;
 		}
 	}
+
 	return false;
 }
 
@@ -219,12 +277,6 @@ template<typename T>
 size_t MyVector<T>::getSize() const
 {
 	return size;
-}
-
-template<typename T>
-size_t MyVector<T>::getCapacity() const
-{
-	return capacity;
 }
 
 template<typename T>
@@ -240,4 +292,8 @@ template<typename T>
 void MyVector<T>::clear()
 {
 	size = 0;
+	delete[] data;
+	
+	capacity = DEFAULT_CAPACITY;
+	data = new T[capacity];
 }
