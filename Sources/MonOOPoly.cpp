@@ -1,6 +1,10 @@
-#include "../Headers/Utilities/MyString.h"
+/*
+	Atanas Kordov, 5MI0600508
+*/
+#include "../Headers/MonopolyEngine.h"
 
 int main()
 {
-	MyString a;
+	MonopolyEngine& engine = MonopolyEngine::getInstance();
+	engine.run();
 }

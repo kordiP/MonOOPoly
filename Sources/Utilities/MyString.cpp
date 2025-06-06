@@ -38,6 +38,11 @@ MyString::MyString(const MyString& other)
     copyFrom(other);
 }
 
+const char* MyString::c_str() const
+{
+    return str;
+}
+
 MyString& MyString::operator=(const MyString& other)
 {
     if (this != &other)

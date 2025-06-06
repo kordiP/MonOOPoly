@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Headers\Commands\Command.h" />
+    <ClInclude Include="Headers\Commands\StartGame.h" />
     <ClInclude Include="Headers\Entities\Bank.h" />
     <ClInclude Include="Headers\Entities\Board.h" />
     <ClInclude Include="Headers\Entities\Cards\Card.h" />
@@ -39,6 +40,8 @@
     <ClInclude Include="Headers\Utilities\HeterogenousContainer.hpp" />
     <ClInclude Include="Headers\Utilities\MyString.h" />
     <ClInclude Include="Headers\Utilities\MyVector.hpp" />
+    <ClInclude Include="Headers\Utilities\Serializers.h" />
+    <ClInclude Include="Headers\Utilities\Stack.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Commands\Command.cpp" />

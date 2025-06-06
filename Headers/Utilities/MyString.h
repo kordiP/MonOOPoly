@@ -1,7 +1,3 @@
-/*
-	Atanas Kordov, 5MI0600508
-*/
-
 #pragma once
 #include <iostream>
 

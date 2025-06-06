@@ -1,6 +1,6 @@
+#pragma once
 
-
-class MonopolyEngine
+class Trade
 {
-	void run() const;
+
 };

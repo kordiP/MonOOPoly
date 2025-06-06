@@ -1,6 +1,6 @@
+#pragma once
 
-
-class MonopolyEngine
+class Board
 {
-	void run() const;
+
 };
