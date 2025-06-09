@@ -45,7 +45,7 @@ template<typename T>
 Stack<T>::Stack(size_t capacity) : size(0)
 {
 	this->capacity = capacity;
-	data = new T[this->capacity];
+	data = new T*[this->capacity];
 }
 
 template<typename T>
@@ -59,7 +59,7 @@ Stack<T>& Stack<T>::operator=(const Stack& other)
 {
 	if (this != &other)
 	{
-		free();
+		freeMem();
 		copyFrom(other);
 	}
 
@@ -77,7 +77,7 @@ Stack<T>& Stack<T>::operator=(Stack&& other) noexcept
 {
 	if (this != &other)
 	{
-		free();
+		freeMem();
 		moveFrom(std::move(other));
 	}
 

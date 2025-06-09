@@ -47,7 +47,7 @@ public:
     /**
      * Commands can delegate to any methods of a receiver.
      */
-    void Execute() const override {
+    void execute() const override {
         std::cout << "ComplexCommand: Complex stuff should be done by a receiver object.\n";
         this->receiver_->DoSomething(this->a_);
         this->receiver_->DoSomethingElse(this->b_);
@@ -90,12 +90,12 @@ public:
     void DoSomethingImportant() {
         std::cout << "Invoker: Does anybody want something done before I begin?\n";
         if (this->on_start_) {
-            this->on_start_->Execute();
+            this->on_start_->execute();
         }
         std::cout << "Invoker: ...doing something really important...\n";
         std::cout << "Invoker: Does anybody want something done after I finish?\n";
         if (this->on_finish_) {
-            this->on_finish_->Execute();
+            this->on_finish_->execute();
         }
     }
 };
@@ -105,7 +105,7 @@ public:
 
 int main() {
     Invoker* invoker = new Invoker;
-    invoker->SetOnStart(new SimpleCommand("Say Hi!"));
+    //invoker->SetOnStart(new SimpleCommand("Say Hi!"));
     Receiver* receiver = new Receiver;
     invoker->SetOnFinish(new ComplexCommand(receiver, "Send email", "Save report"));
     invoker->DoSomethingImportant();

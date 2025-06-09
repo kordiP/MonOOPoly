@@ -96,7 +96,7 @@ template<class T>
 void HeterogeneousContainer<T>::resize()
 {
 	capacity *= 2;
-	T** tmp = new T* [newCap];
+	T** tmp = new T* [capacity];
 
 	for (int i = 0; i < size; i++)
 	{
@@ -104,7 +104,7 @@ void HeterogeneousContainer<T>::resize()
 	}
 
 	delete[] data;
-	data = temp;
+	data = tmp;
 }
 
 template<class T>
