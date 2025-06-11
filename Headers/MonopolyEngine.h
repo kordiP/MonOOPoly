@@ -10,6 +10,12 @@ private:
     MonopolyEngine& operator=(const MonopolyEngine&) = delete;
     MonopolyEngine(MonopolyEngine&&) = delete;                   
     MonopolyEngine& operator=(MonopolyEngine&&) = delete;
+
+    void startGame();
+    void setUpBoard();
+    void distributeMoney();
+    void setUpCardDeck();
+    void rollDice();
 public:
     static MonopolyEngine& getInstance();
     void run();

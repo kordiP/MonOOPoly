@@ -1,19 +1,13 @@
 #pragma once
+#include "../GameLogic.h"
 #include "Command.h"
-#include "../Utilities/MyString.h"
 
 class StartGame : public Command 
 {
 private:
-    
-
+    GameLogic* logic;
 public:
-    StartGame(size_t playerNumber) 
-    {
-
-    }
-    void execute() const override 
-    {
-        std::cout << "";
-    }
+    explicit StartGame(GameLogic* log);
+    ~StartGame();
+    void execute() const override;
 };

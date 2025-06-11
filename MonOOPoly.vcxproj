@@ -20,9 +20,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Headers\Commands\Command.h" />
+    <ClInclude Include="Headers\Commands\RollDice.h" />
     <ClInclude Include="Headers\Commands\StartGame.h" />
     <ClInclude Include="Headers\Entities\Bank.h" />
     <ClInclude Include="Headers\Entities\Board.h" />
+    <ClInclude Include="Headers\Entities\CardDeck.h" />
     <ClInclude Include="Headers\Entities\Cards\Card.h" />
     <ClInclude Include="Headers\Entities\Cards\GroupPaymentCard.h" />
     <ClInclude Include="Headers\Entities\Cards\MovePositionCard.h" />
@@ -36,6 +38,7 @@
     <ClInclude Include="Headers\Entities\Mortgages\Mortgage.h" />
     <ClInclude Include="Headers\Entities\Player.h" />
     <ClInclude Include="Headers\Entities\Trade.h" />
+    <ClInclude Include="Headers\GameController.h" />
     <ClInclude Include="Headers\MonopolyEngine.h" />
     <ClInclude Include="Headers\Utilities\HeterogenousContainer.hpp" />
     <ClInclude Include="Headers\Utilities\MyString.h" />
@@ -44,6 +47,7 @@
     <ClInclude Include="Headers\Utilities\Stack.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Sources\Commands\StartGame.cpp" />
     <ClCompile Include="Sources\Commands\Command.cpp" />
     <ClCompile Include="Sources\Entities\Bank.cpp" />
     <ClCompile Include="Sources\Entities\Board.cpp" />
