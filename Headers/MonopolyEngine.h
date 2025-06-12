@@ -6,6 +6,7 @@
 #include "../Headers/Entities/Player.h"
 #include "../Headers/Entities/Bank.h"
 #include "../Headers/Entities/Cards/CardDeck.h"
+#include "../Headers/Commands/Command.h"
 
 class MonopolyEngine
 {
@@ -22,8 +23,6 @@ private:
     MonopolyEngine& operator=(const MonopolyEngine&) = delete;
     MonopolyEngine(MonopolyEngine&&) = delete;                   
     MonopolyEngine& operator=(MonopolyEngine&&) = delete;
-
-    void printWelcomeScreen() const;
 public:
     static MonopolyEngine& getInstance();
     void run();

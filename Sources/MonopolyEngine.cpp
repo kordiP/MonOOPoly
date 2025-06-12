@@ -1,10 +1,5 @@
 #include "../Headers/MonopolyEngine.h"
 
-void MonopolyEngine::printWelcomeScreen() const
-{
-    
-}
-
 MonopolyEngine& MonopolyEngine::getInstance()
 {
     static MonopolyEngine instance;
@@ -13,5 +8,13 @@ MonopolyEngine& MonopolyEngine::getInstance()
 
 void MonopolyEngine::run()
 {
-    MyString input;
+	Command* currCommand;
+
+	while (true)
+	{
+		if (true)
+		{
+
+		}
+	}
 }
