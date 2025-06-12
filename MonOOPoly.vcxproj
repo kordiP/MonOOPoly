@@ -19,11 +19,22 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Headers\Commands\AcceptTrade.h" />
+    <ClInclude Include="Headers\Commands\BuyProperty.h" />
     <ClInclude Include="Headers\Commands\Command.h" />
-    <ClInclude Include="Headers\Commands\StartGame.h" />
+    <ClInclude Include="Headers\Commands\ContinueGame.h" />
+    <ClInclude Include="Headers\Commands\HelpMenu.h" />
+    <ClInclude Include="Headers\Commands\ProposeTrade.h" />
+    <ClInclude Include="Headers\Commands\Resign.h" />
+    <ClInclude Include="Headers\Commands\RollDice.h" />
+    <ClInclude Include="Headers\Commands\SellProperty.h" />
+    <ClInclude Include="Headers\Commands\SetMortgage.h" />
+    <ClInclude Include="Headers\Commands\StartNewGame.h" />
+    <ClInclude Include="Headers\Commands\WelcomeScreen.h" />
     <ClInclude Include="Headers\Entities\Bank.h" />
     <ClInclude Include="Headers\Entities\Board.h" />
     <ClInclude Include="Headers\Entities\Cards\Card.h" />
+    <ClInclude Include="Headers\Entities\Cards\CardDeck.h" />
     <ClInclude Include="Headers\Entities\Cards\GroupPaymentCard.h" />
     <ClInclude Include="Headers\Entities\Cards\MovePositionCard.h" />
     <ClInclude Include="Headers\Entities\Cards\PaymentCard.h" />

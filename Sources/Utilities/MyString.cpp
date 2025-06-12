@@ -105,7 +105,7 @@ char& MyString::operator[](int index)
 
 MyString& MyString::operator+=(const MyString& mstr)
 {
-    int finalSize = size + mstr.size;
+    size_t finalSize = size + mstr.size;
     MyString tmp(*this);
 
     size = finalSize;

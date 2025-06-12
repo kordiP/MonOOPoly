@@ -30,6 +30,7 @@ public:
 	Stack& push(const T& elem);
 	Stack& push(T&& elem);
 	Stack& pop();
+	T* popToBottom();
 
 	const T& top() const;
 
@@ -128,6 +129,24 @@ Stack<T>& Stack<T>::pop()
 	data[size] = nullptr;
 
 	return *this;
+}
+
+template<typename T>
+T* Stack<T>::popToBottom()
+{
+	if (size == 0)
+	{
+		throw std::logic_error("Empty stack.");
+	}
+
+	T* el = data[size - 1];
+	for (size_t i = size - 1; i > 0; i--)
+	{
+		data[i] = data[i - 1];
+	}
+	data[0] = el;
+
+	return el;
 }
 
 template<typename T>

@@ -1,15 +1,29 @@
 #pragma once
+#include <iostream>
+#include "../Headers/Utilities/MyString.h"
+#include "../Headers/Utilities/MyVector.hpp"
+#include "../Headers/Entities/Board.h"
+#include "../Headers/Entities/Player.h"
+#include "../Headers/Entities/Bank.h"
+#include "../Headers/Entities/Cards/CardDeck.h"
 
 class MonopolyEngine
 {
 private:
-    MonopolyEngine() = default; 
+    Board& board;
+    MyVector<Player> players;
+    Bank& bank;
+    CardDeck& deck;
+
+    MonopolyEngine(); 
     ~MonopolyEngine() = default;
 
     MonopolyEngine(const MonopolyEngine&) = delete;             
     MonopolyEngine& operator=(const MonopolyEngine&) = delete;
     MonopolyEngine(MonopolyEngine&&) = delete;                   
     MonopolyEngine& operator=(MonopolyEngine&&) = delete;
+
+    void printWelcomeScreen() const;
 public:
     static MonopolyEngine& getInstance();
     void run();
