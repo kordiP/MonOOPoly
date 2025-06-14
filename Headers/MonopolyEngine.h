@@ -11,11 +11,6 @@
 class MonopolyEngine
 {
 private:
-    Board& board;
-    MyVector<Player> players;
-    Bank& bank;
-    CardDeck& deck;
-
     MonopolyEngine(); 
     ~MonopolyEngine() = default;
 

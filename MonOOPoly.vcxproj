@@ -53,6 +53,7 @@
     <ClInclude Include="Headers\Entities\Mortgages\Mortgage.h" />
     <ClInclude Include="Headers\Entities\Player.h" />
     <ClInclude Include="Headers\Entities\Trade.h" />
+    <ClInclude Include="Headers\GameData.h" />
     <ClInclude Include="Headers\MonopolyEngine.h" />
     <ClInclude Include="Headers\Utilities\HeterogenousContainer.hpp" />
     <ClInclude Include="Headers\Utilities\MyString.h" />
@@ -61,26 +62,45 @@
     <ClInclude Include="Headers\Utilities\Stack.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Sources\Commands\AcceptTrade.cpp" />
+    <ClCompile Include="Sources\Commands\BuyProperty.cpp" />
     <ClCompile Include="Sources\Commands\CommandInterpretor.cpp" />
     <ClCompile Include="Sources\Commands\Command.cpp" />
+    <ClCompile Include="Sources\Commands\ContinueGame.cpp" />
+    <ClCompile Include="Sources\Commands\EndGame.cpp" />
+    <ClCompile Include="Sources\Commands\HelpMenu.cpp" />
+    <ClCompile Include="Sources\Commands\ProposeTrade.cpp" />
+    <ClCompile Include="Sources\Commands\Resign.cpp" />
+    <ClCompile Include="Sources\Commands\RollDice.cpp" />
+    <ClCompile Include="Sources\Commands\SellProperty.cpp" />
+    <ClCompile Include="Sources\Commands\SetMortgage.cpp" />
+    <ClCompile Include="Sources\Commands\StartNewGame.cpp" />
+    <ClCompile Include="Sources\Commands\ViewTrades.cpp" />
+    <ClCompile Include="Sources\Commands\WelcomeScreen.cpp" />
     <ClCompile Include="Sources\Entities\Bank.cpp" />
     <ClCompile Include="Sources\Entities\Board.cpp" />
     <ClCompile Include="Sources\Entities\Cards\Card.cpp" />
+    <ClCompile Include="Sources\Entities\Cards\CardDeck.cpp" />
     <ClCompile Include="Sources\Entities\Cards\GroupPaymentCard.cpp" />
     <ClCompile Include="Sources\Entities\Cards\MovePositionCard.cpp" />
     <ClCompile Include="Sources\Entities\Cards\PaymentCard.cpp" />
     <ClCompile Include="Sources\Entities\Fields\CardField.cpp" />
+    <ClCompile Include="Sources\Entities\Fields\CarPark.cpp" />
     <ClCompile Include="Sources\Entities\Fields\Field.cpp" />
     <ClCompile Include="Sources\Entities\Fields\GoToJailField.cpp" />
+    <ClCompile Include="Sources\Entities\Fields\JailField.cpp" />
     <ClCompile Include="Sources\Entities\Fields\Property.cpp" />
+    <ClCompile Include="Sources\Entities\Fields\StartField.cpp" />
     <ClCompile Include="Sources\Entities\Mortgages\Castle.cpp" />
     <ClCompile Include="Sources\Entities\Mortgages\Cottage.cpp" />
     <ClCompile Include="Sources\Entities\Mortgages\Mortgage.cpp" />
     <ClCompile Include="Sources\Entities\Player.cpp" />
     <ClCompile Include="Sources\Entities\Trade.cpp" />
+    <ClCompile Include="Sources\GameData.cpp" />
     <ClCompile Include="Sources\MonOOPoly.cpp" />
     <ClCompile Include="Sources\MonopolyEngine.cpp" />
     <ClCompile Include="Sources\Utilities\MyString.cpp" />
+    <ClCompile Include="Sources\Utilities\Serializers.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ResourceFiles\game.bin" />
