@@ -43,9 +43,12 @@
     <ClInclude Include="Headers\Entities\Cards\MovePositionCard.h" />
     <ClInclude Include="Headers\Entities\Cards\PaymentCard.h" />
     <ClInclude Include="Headers\Entities\Fields\CardField.h" />
+    <ClInclude Include="Headers\Entities\Fields\CarPark.h" />
     <ClInclude Include="Headers\Entities\Fields\Field.h" />
     <ClInclude Include="Headers\Entities\Fields\GoToJailField.h" />
+    <ClInclude Include="Headers\Entities\Fields\JailField.h" />
     <ClInclude Include="Headers\Entities\Fields\Property.h" />
+    <ClInclude Include="Headers\Entities\Fields\StartField.h" />
     <ClInclude Include="Headers\Entities\Mortgages\Castle.h" />
     <ClInclude Include="Headers\Entities\Mortgages\Cottage.h" />
     <ClInclude Include="Headers\Entities\Mortgages\Mortgage.h" />

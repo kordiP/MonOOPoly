@@ -17,4 +17,5 @@ private:
 public:
     static Board& getInstance();
     
+    void printBoard() const;
 };
