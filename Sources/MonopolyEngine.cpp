@@ -8,13 +8,13 @@ MonopolyEngine& MonopolyEngine::getInstance()
 
 void MonopolyEngine::run()
 {
-	Command* currCommand;
+	CommandInterpretor& commandReader = CommandInterpretor::getInstance();
+	MyString input;
+	commandReader.executeCommand("Initial");
 
-	while (true)
+	do
 	{
-		if (true)
-		{
-
-		}
-	}
+		std::cin >> input;
+		commandReader.executeCommand(input);
+	} while (input != "EndGame");
 }

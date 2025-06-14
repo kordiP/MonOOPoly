@@ -10,20 +10,22 @@
 #include "SellProperty.h"
 #include "SetMortgage.h"
 #include "StartNewGame.h"
+#include "EndGame.h"
 #include "WelcomeScreen.h"
 #include "../Utilities/MyString.h"
 
 class CommandInterpretor
 {
 private:
+    Command* currCommand;
+
     CommandInterpretor();
-    ~CommandInterpretor() = default;
+    ~CommandInterpretor();
 
     CommandInterpretor(const CommandInterpretor&) = delete;
     CommandInterpretor& operator=(const CommandInterpretor&) = delete;
     CommandInterpretor(CommandInterpretor&&) = delete;
     CommandInterpretor& operator=(CommandInterpretor&&) = delete;
-
 public:
     static CommandInterpretor& getInstance();
     void executeCommand(const MyString&);

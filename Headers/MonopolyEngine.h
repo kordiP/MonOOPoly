@@ -6,7 +6,7 @@
 #include "../Headers/Entities/Player.h"
 #include "../Headers/Entities/Bank.h"
 #include "../Headers/Entities/Cards/CardDeck.h"
-#include "../Headers/Commands/Command.h"
+#include "../Headers/Commands/CommandInterpretor.h"
 
 class MonopolyEngine
 {

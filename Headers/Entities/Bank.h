@@ -1,8 +1,10 @@
 #pragma once
+#include "../Entities/Trade.h"
 
 class Bank
 {
 private:
+    MyVector<Trade> trades;
     Bank();
     ~Bank() = default;
 
@@ -12,4 +14,5 @@ private:
     Bank& operator=(Bank&&) = delete;
 public:
     static Bank& getInstance();
+
 };

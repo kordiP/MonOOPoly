@@ -24,6 +24,7 @@
     <ClInclude Include="Headers\Commands\Command.h" />
     <ClInclude Include="Headers\Commands\CommandInterpretor.h" />
     <ClInclude Include="Headers\Commands\ContinueGame.h" />
+    <ClInclude Include="Headers\Commands\EndGame.h" />
     <ClInclude Include="Headers\Commands\HelpMenu.h" />
     <ClInclude Include="Headers\Commands\ProposeTrade.h" />
     <ClInclude Include="Headers\Commands\Resign.h" />
@@ -31,6 +32,7 @@
     <ClInclude Include="Headers\Commands\SellProperty.h" />
     <ClInclude Include="Headers\Commands\SetMortgage.h" />
     <ClInclude Include="Headers\Commands\StartNewGame.h" />
+    <ClInclude Include="Headers\Commands\ViewTrades.h" />
     <ClInclude Include="Headers\Commands\WelcomeScreen.h" />
     <ClInclude Include="Headers\Entities\Bank.h" />
     <ClInclude Include="Headers\Entities\Board.h" />
@@ -57,7 +59,7 @@
     <ClInclude Include="Headers\Utilities\Stack.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Sources\Commands\StartGame.cpp" />
+    <ClCompile Include="Sources\Commands\CommandInterpretor.cpp" />
     <ClCompile Include="Sources\Commands\Command.cpp" />
     <ClCompile Include="Sources\Entities\Bank.cpp" />
     <ClCompile Include="Sources\Entities\Board.cpp" />
