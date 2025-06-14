@@ -16,5 +16,7 @@ private:
     CardDeck& operator=(CardDeck&&) = delete;
 public:
     static CardDeck& getInstance();
+
     void drawCard(Player& player);
+    void addCard(const Card& card); // for when it's still empty, fill it first then use it
 };

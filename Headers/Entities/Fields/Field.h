@@ -8,7 +8,7 @@ private:
 	MyString description;
 public:
 	Field();
-	Field(int index, const MyString& content);
+	Field(int index, const MyString& descr);
 	virtual ~Field() = default;
 	virtual Field* clone() const = 0;
 

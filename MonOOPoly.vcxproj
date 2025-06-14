@@ -36,7 +36,6 @@
     <ClInclude Include="Headers\Commands\WelcomeScreen.h" />
     <ClInclude Include="Headers\Entities\Bank.h" />
     <ClInclude Include="Headers\Entities\Board.h" />
-    <ClInclude Include="Headers\Entities\CardDeck.h" />
     <ClInclude Include="Headers\Entities\Cards\Card.h" />
     <ClInclude Include="Headers\Entities\Cards\CardDeck.h" />
     <ClInclude Include="Headers\Entities\Cards\GroupPaymentCard.h" />

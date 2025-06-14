@@ -1,6 +1,7 @@
 #pragma once
 #include "../Entities/Trade.h"
 #include "../Entities/Player.h"
+#include "../Utilities/MyVector.hpp"
 
 class Bank
 {

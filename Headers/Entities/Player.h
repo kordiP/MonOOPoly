@@ -5,7 +5,7 @@
 class Player
 {
 private:
-	bool resigned = false;
+	bool isInGame = false;
 	int consecPairs = 0;
 
 	MyString name;

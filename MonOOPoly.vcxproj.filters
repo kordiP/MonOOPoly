@@ -117,9 +117,6 @@
     <ClInclude Include="Headers\Entities\Cards\CardDeck.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Entities\CardDeck.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Headers\Commands\RollDice.h">
       <Filter>Header Files</Filter>
     </ClInclude>

@@ -6,7 +6,7 @@
 class Property : public Field
 {
 private:
-	Player* owne = nullptr;
+	Player* owner = nullptr;
 	Mortgage* mortgage = nullptr;
 	MyString color;
 
@@ -18,9 +18,7 @@ private:
 
 public:
 	Property();
-	Property(int indexOnBoard, const MyString& description, const MyString& color, int baseRent, int basePurchase, int cottageBuildPrice, int castleBuildPrice);
-
-	Field* clone() const override;
+	Property(int index, const MyString& descr, const MyString& color, int baseRent, int basePur, int cottageBuild, int castleBuild);
 
 	bool hasMortgage() const;
 	const Mortgage* getMortgage() const;
@@ -33,13 +31,12 @@ public:
 	void setOwner(Player* player);
 	void removeOwner();
 
-	void removeMortgage();
-	void addMortgage(const Mortgage& mortgage);
+	void buyMortgage(Mortgage* mortgage);
+	void removeMortgage(); // if building is sold / any of the buildings from this one's color -> remove das mortgaj
 
+	Field* clone() const override;
 	void steppedOnBy(Player* player) override;
-
 	void print() const override;
 	void printDescription() const override;
-
 	void saveToFile(std::ofstream& ofs) const override;
 };
