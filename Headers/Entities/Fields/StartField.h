@@ -3,6 +3,8 @@
 
 class StartField : public Field
 {
+private:
+	double rewardForPlayer = 200;
 public:
 	StartField();
 	StartField(int index, const MyString& content);

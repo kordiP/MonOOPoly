@@ -19,7 +19,7 @@ class CommandInterpretor
 private:
     Command* currCommand;
 
-    CommandInterpretor();
+    CommandInterpretor() = default;
     ~CommandInterpretor();
 
     CommandInterpretor(const CommandInterpretor&) = delete;

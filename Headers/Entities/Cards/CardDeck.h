@@ -1,6 +1,7 @@
 #pragma once
 #include "Card.h"
 #include "../Player.h"
+#include "../../Utilities/Stack.hpp"
 
 class CardDeck
 {

@@ -58,6 +58,10 @@ void CommandInterpretor::executeCommand(const MyString& command)
 	{
 		currCommand = new SetMortgage();
 	}
+	else if (command == "HelpMenu")
+	{
+		currCommand = new HelpMenu();
+	}
 	else if (command == "EndGame")
 	{
 		currCommand = new EndGame();

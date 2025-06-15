@@ -20,13 +20,13 @@ namespace
 	9. 
 */
 
-class Serializers
+class Serializer
 {
 private:
 	void readBoard();
 	void readPlayers();
 
 public:
-	void saveGameState();
-	void loadGameState();
+	void createGameSave();
+	void readGameSave();
 };

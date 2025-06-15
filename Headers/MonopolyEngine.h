@@ -11,7 +11,7 @@
 class MonopolyEngine
 {
 private:
-    MonopolyEngine(); 
+    MonopolyEngine() = default; 
     ~MonopolyEngine() = default;
 
     MonopolyEngine(const MonopolyEngine&) = delete;             

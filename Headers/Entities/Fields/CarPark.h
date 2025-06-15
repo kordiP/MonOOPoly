@@ -5,7 +5,7 @@ class CarPark : public Field
 {
 public:
 	CarPark();
-	CarPark(int index, const MyString& content);
+	CarPark(int index, const MyString& descr);
 
 	Field* clone() const override;
 	void steppedOnBy(Player* player) override;

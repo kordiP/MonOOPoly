@@ -58,7 +58,7 @@
     <ClInclude Include="Headers\Utilities\HeterogenousContainer.hpp" />
     <ClInclude Include="Headers\Utilities\MyString.h" />
     <ClInclude Include="Headers\Utilities\MyVector.hpp" />
-    <ClInclude Include="Headers\Utilities\Serializers.h" />
+    <ClInclude Include="Headers\Utilities\Serializer.h" />
     <ClInclude Include="Headers\Utilities\Stack.hpp" />
   </ItemGroup>
   <ItemGroup>

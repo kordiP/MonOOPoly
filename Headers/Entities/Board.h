@@ -1,13 +1,19 @@
 #pragma once
 #include "../Utilities/HeterogenousContainer.hpp"
 #include "../Entities/Fields/Field.h"
+#include "../Entities/Fields/JailField.h"
+#include "../Entities/Fields/CardField.h"
+#include "../Entities/Fields/CarPark.h"
+#include "../Entities/Fields/GoToJailField.h"
+#include "../Entities/Fields/Property.h"
+#include "../Entities/Fields/StartField.h"
 
 class Board
 {
 private:
     HeterogeneousContainer<Field> fields;
 
-    Board();
+    Board() = default;
     ~Board() = default;
 
     Board(const Board&) = delete;
@@ -16,6 +22,8 @@ private:
     Board& operator=(Board&&) = delete;
 public:
     static Board& getInstance();
+
+    void generate();
     
 	int getBoardSize() const;
 	Field* getField(int index);

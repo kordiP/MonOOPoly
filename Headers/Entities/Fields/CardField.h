@@ -8,7 +8,7 @@ private:
 	CardDeck& deck;
 public:
 	CardField();
-	CardField(int index, const MyString& descr, const CardDeck& deck);
+	CardField(int index, const MyString& descr);
 
 	Field* clone() const override;
 	void steppedOnBy(Player* player) override;// drawCard from deck, card->applyEffect(player)

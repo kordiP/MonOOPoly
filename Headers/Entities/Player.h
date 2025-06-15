@@ -6,22 +6,28 @@ class Player
 {
 private:
 	bool isInGame = false;
+	bool hasToSkip = false;
 	int consecPairs = 0;
 
 	MyString name;
 	size_t currentPostionIndex = 0;
-	double balance;
+	double balance = 0;
 public:
 	Player();
-	Player(int playerIndex, const MyString& playerName, const MyString& color, int playerBalance);
+	Player(const MyString& playerName);
 
 	const MyString& getName() const;
 	int getConsecPairsCount() const;
+	void pairThrown();
 	int getPositionIndex() const;
 
 	void resign();
 	bool isResigned() const;
 	bool toSkipTurn() const;
+	void resetPairCount();
+
+	bool hasToSkipTurn();
+	void shouldSkipTurn(bool skip);
 
 	bool hasEnoughBalance(int debt) const;
 	// balance + sell price of all their properties

@@ -8,6 +8,8 @@ MonopolyEngine& MonopolyEngine::getInstance()
 
 void MonopolyEngine::run()
 {
+	srand(time(0));
+
 	CommandInterpretor& commandReader = CommandInterpretor::getInstance();
 	MyString input;
 	commandReader.executeCommand("Initial");
