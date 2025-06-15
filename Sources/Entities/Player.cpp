@@ -4,7 +4,7 @@ Player::Player()
 {
 }
 
-Player::Player(const MyString& playerName)
+Player::Player(const MyString& playerName, char fig)
 {
 }
 
@@ -20,6 +20,11 @@ int Player::getConsecPairsCount() const
 
 void Player::pairThrown()
 {
+}
+
+char Player::getFigure() const
+{
+	return 0;
 }
 
 int Player::getPositionIndex() const

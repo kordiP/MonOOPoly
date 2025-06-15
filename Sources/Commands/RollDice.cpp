@@ -19,11 +19,6 @@ void RollDice::execute() const
 
 	std::cout << "Rolled a " << diceOne << " and a " << diceTwo << std::endl;
 
-	if (curPl.getPositionIndex() == jailAt)
-	{
-
-	}
-
 	if (diceOne == diceTwo)
 	{
 		curPl.pairThrown();
@@ -37,4 +32,29 @@ void RollDice::execute() const
 		curPl.resetPairCount();
 		curPl.shouldSkipTurn(true);
 	}
+
+	if (curPl.getPositionIndex() == jailAt && diceOne == diceTwo)
+	{
+		std::cout << "Lucky you, no longer in jail. The pair frees you!" << std::endl;
+	}
+	else if (curPl.getPositionIndex() == jailAt)
+	{
+		std::cout << "The roll was unsuccessfull. Would you like to pay to get out? If so, type \"Pay\"" << std::endl;
+		MyString wantsToPay;
+		std::cin >> wantsToPay;
+
+		if (wantsToPay == "Pay")
+		{
+			curPl.decreaseBalance(reinterpret_cast<JailField*>(jail)->getFeeForEscape());
+		}
+		else
+		{
+			curPl.resetPairCount();
+			return;
+		}
+	}
+
+	curPl.moveBy(diceOne + diceTwo);
+	Field* next = data.getFieldAt(curPl.getPositionIndex());
+	next->steppedOnBy(curPl);
 }

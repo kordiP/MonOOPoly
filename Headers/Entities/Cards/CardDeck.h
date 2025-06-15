@@ -1,7 +1,11 @@
 #pragma once
 #include "Card.h"
+#include "GroupPaymentCard.h"
+#include "PaymentCard.h"
+#include "MovePositionCard.h"
 #include "../Player.h"
 #include "../../Utilities/Stack.hpp"
+#include <iostream>
 
 class CardDeck
 {
@@ -18,6 +22,6 @@ private:
 public:
     static CardDeck& getInstance();
 
+    void generateRandomDeck(size_t size);
     void drawCard(Player& player);
-    void addCard(const Card& card); // for when it's still empty, fill it first then use it
 };

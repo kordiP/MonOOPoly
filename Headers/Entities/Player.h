@@ -10,15 +10,17 @@ private:
 	int consecPairs = 0;
 
 	MyString name;
+	char figure;
 	size_t currentPostionIndex = 0;
 	double balance = 0;
 public:
 	Player();
-	Player(const MyString& playerName);
+	Player(const MyString& playerName, char fig);
 
 	const MyString& getName() const;
 	int getConsecPairsCount() const;
 	void pairThrown();
+	char getFigure() const;
 	int getPositionIndex() const;
 
 	void resign();

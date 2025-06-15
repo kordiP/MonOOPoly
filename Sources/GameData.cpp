@@ -1,4 +1,4 @@
-#include "../Headers//GameData.h"
+#include "../Headers/GameData.h"
 GameData::GameData() : board(Board::getInstance()), bank(Bank::getInstance()), deck(CardDeck::getInstance()) { }
 
 GameData& GameData::getInstance() 
@@ -25,9 +25,9 @@ bool GameData::isNameTaken(const MyString& playerName)
 	return false;
 }
 
-void GameData::addPlayer(const MyString& playerName)
+void GameData::addPlayer(const MyString& playerName, char fig)
 {
-	Player player(playerName);
+	Player player(playerName, fig);
 	players.pushBack(player);
 }
 
@@ -51,33 +51,46 @@ Field* GameData::getFieldAt(int index) const
 	return board.getField(index);
 }
 
-Card* GameData::generateRandomCard() const
+void GameData::generateRandomDeck(size_t size)
 {
-	size_t num = rand() % 3 + 1;
+	deck.generateRandomDeck(size);
+}
 
-	switch (num)
+void GameData::groupPayFrom(Player& player, int amount)
+{
+	player.increaseBalance(amount);
+
+	for (size_t i = 0; i < players.getSize(); i++)
 	{
-	case 1:
-		return new GroupPaymentCard;
-		break;
-	case 2:
-		return new PaymentCard;
-		break;
-	case 3:
-		return new MovePositionCard;
-		break;
-	default:
-		return nullptr;
-		break;
+		Player& pl = players[i];
+
+		if (pl.isResigned() || pl.getFigure() == player.getFigure())
+		{
+			continue;
+		}
+
+		pl.decreaseBalance(amount / (getCurrentPlayersCount() - 1));
 	}
 }
 
-void GameData::addCardToDeck(Card* card)
+void GameData::groupPayTo(Player& player, int amount)
 {
-	deck.addCard(*card);
+	player.decreaseBalance(amount);
+
+	for (size_t i = 0; i < players.getSize(); i++)
+	{
+		Player& pl = players[i];
+
+		if (pl.isResigned() || pl.getFigure() == player.getFigure())
+		{
+			continue;
+		}
+
+		pl.increaseBalance(amount / (getCurrentPlayersCount() - 1));
+	}
 }
 
-// just handle who is at turn / who is currPlaya
+// just handle who is at turn / who is currPlayer
 void GameData::performTurn()
 {
 	if (players.getSize() <= 0)

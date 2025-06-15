@@ -31,7 +31,7 @@ public:
     static GameData& getInstance();
     bool isNameTaken(const MyString& playerName);
     void generateBoard();
-    void addPlayer(const MyString& playerName);
+    void addPlayer(const MyString& playerName, char fig);
 
 	bool isGameOver() const;
 	int getCurrentPlayersCount() const;
@@ -39,8 +39,10 @@ public:
     int getJailIndex() const;
     Field* getFieldAt(int index) const;
 
-    Card* generateRandomCard() const;
-    void addCardToDeck(Card* card);
+    void generateRandomDeck(size_t size);
+
+    void groupPayFrom(Player& player, int amount);
+    void groupPayTo(Player& player, int amount);
 
     void performTurn();
 

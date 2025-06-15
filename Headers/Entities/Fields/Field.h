@@ -5,15 +5,17 @@ class Field
 {
 private:
 	int indexOnBoard;
+	int color;
 	MyString description;
 public:
 	Field();
-	Field(int index, const MyString& descr);
+	Field(int index, const MyString& descr, int color);
 	virtual ~Field() = default;
 	virtual Field* clone() const = 0;
 
 	int getFieldIndex() const;
-	virtual void steppedOnBy(Player* player) = 0;
+	int getColor() const;
+	virtual void steppedOnBy(Player& player) = 0;
 	virtual void print() const = 0;
 	virtual void printDescription() const = 0;
 

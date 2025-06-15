@@ -2,6 +2,14 @@
 
 void StartNewGame::execute() const
 {
+	MyVector<char> figures;
+	figures.pushBack('!');
+	figures.pushBack('@');
+	figures.pushBack('#');
+	figures.pushBack('$');
+	figures.pushBack('%');
+	figures.pushBack('^');
+
 	const MyString endInput = "Play!";
 	std::cout << "Enter names for up to 6 players. When finished, just type \"" << endInput << "\"" << std::endl;
 
@@ -30,16 +38,13 @@ void StartNewGame::execute() const
 			break;
 		}
 
-		data.addPlayer(playerName);
+		data.addPlayer(playerName, figures[i]);
 	}
-	
-	data.generateBoard();
 
 	// we have 3 types of cards -> two of each, will be circulated to bottom when drawn
 	size_t cardDeckSize = data.getCurrentPlayersCount() * 6;
 
-	for (size_t i = 0; i < cardDeckSize; i++)
-	{
-		data.addCardToDeck(data.generateRandomCard());
-	}
+	data.generateRandomDeck(cardDeckSize);
+	data.generateBoard();
+	data.performTurn();
 }
