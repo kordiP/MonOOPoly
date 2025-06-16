@@ -1,22 +1,32 @@
 #include "../../../Headers/Entities/Cards/CardDeck.h"
 
+CardDeck& CardDeck::getInstance()
+{
+	static CardDeck deck;
+	return deck;
+}
+
 void CardDeck::generateRandomDeck(size_t size)
 {
 	for (size_t i = 0; i < size; i++)
 	{
+		Card* card;
 		size_t num = rand() % 3 + 1;
 
 		switch (num)
 		{
 		case 1:
-			Card* g = new GroupPaymentCard();
-			deck.push(*g);
+			card = new GroupPaymentCard();
+			deck.push(*card);
+			break;
 		case 2:
-			Card* g = new PaymentCard();
-			deck.push(*g);
+			card = new PaymentCard();
+			deck.push(*card);
+			break;
 		case 3:
-			Card* g = new MovePositionCard();
-			deck.push(*g);
+			card = new MovePositionCard();
+			deck.push(*card);
+			break;
 		}
 	}
 }

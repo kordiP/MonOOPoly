@@ -7,7 +7,7 @@ class Bank
 {
 private:
     MyVector<Trade> trades;
-    Bank();
+    Bank() = default;
     ~Bank() = default;
 
     Bank(const Bank&) = delete;
@@ -24,9 +24,6 @@ public:
     // basically, set property owner to nullptr
     void takeAllAssets(Player& player);
     void giveStartingMoney();
-
-    void takeMoneyFrom(Player& player, double amount);
-    void giveMoneyTo(Player& player, double amount);
 
     void getAllTradesFor(Player& player);
     bool isTradeAccepted(int fieldIndex);

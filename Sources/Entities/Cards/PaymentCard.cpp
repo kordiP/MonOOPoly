@@ -1,4 +1,4 @@
-#include "../../../Headers/Entities/Cards/GroupPaymentCard.h"
+#include "../../../Headers/Entities/Cards/PaymentCard.h"
 
 PaymentCard::PaymentCard(int amount)
 {

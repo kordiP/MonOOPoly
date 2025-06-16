@@ -46,6 +46,11 @@ int GameData::getJailIndex() const
 	return board.getJailIndex();
 }
 
+int GameData::getJailTax()
+{
+	return board.getJailTax();
+}
+
 Field* GameData::getFieldAt(int index) const
 {
 	return board.getField(index);

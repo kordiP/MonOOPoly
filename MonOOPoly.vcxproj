@@ -55,6 +55,7 @@
     <ClInclude Include="Headers\Entities\Trade.h" />
     <ClInclude Include="Headers\GameData.h" />
     <ClInclude Include="Headers\MonopolyEngine.h" />
+    <ClInclude Include="Headers\Utilities\Colors.h" />
     <ClInclude Include="Headers\Utilities\HeterogenousContainer.hpp" />
     <ClInclude Include="Headers\Utilities\MyString.h" />
     <ClInclude Include="Headers\Utilities\MyVector.hpp" />

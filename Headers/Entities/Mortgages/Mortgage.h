@@ -4,7 +4,7 @@
 class Mortgage
 {
 protected:
-	double increaseMultipl;
+	double increaseMultipl = 0;
 public:
 	virtual ~Mortgage() = default;
 

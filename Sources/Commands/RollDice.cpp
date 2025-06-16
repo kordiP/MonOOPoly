@@ -13,7 +13,6 @@ void RollDice::execute() const
 	size_t diceTwo = rand() % 6 + 1;
 
 	int jailAt = data.getJailIndex();
-	Field* jail = data.getFieldAt(jailAt);
 
 	data.performTurn();
 
@@ -45,7 +44,7 @@ void RollDice::execute() const
 
 		if (wantsToPay == "Pay")
 		{
-			curPl.decreaseBalance(reinterpret_cast<JailField*>(jail)->getFeeForEscape());
+			curPl.decreaseBalance(data.getJailTax());
 		}
 		else
 		{

@@ -26,7 +26,9 @@ public:
     void generate();
     
 	int getBoardSize() const;
+    int getJailTax() const;
 	Field* getField(int index);
+    const Field* getField(int index) const;
 	int getJailIndex() const;
 
 	void printBoard() const;

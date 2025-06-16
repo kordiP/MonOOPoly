@@ -12,7 +12,7 @@ class CardDeck
 private:
     Stack<Card> deck;
 
-    CardDeck();
+    CardDeck() = default;
     ~CardDeck() = default;
 
     CardDeck(const CardDeck&) = delete;

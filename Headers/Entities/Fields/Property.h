@@ -2,13 +2,14 @@
 #include "Field.h"
 #include "../Player.h"
 #include "../Mortgages/Mortgage.h"
+#include "../Mortgages/Castle.h"
+#include "../Mortgages/Cottage.h"
 
 class Property : public Field
 {
 private:
 	Player* owner = nullptr;
 	Mortgage* mortgage = nullptr;
-	MyString color;
 
 	int baseRent;
 	int basePurchase;
@@ -17,8 +18,8 @@ private:
 	int castleBuildPrice;
 
 public:
-	Property();
-	Property(int index, const MyString& descr, const MyString& color, int baseRent, int basePur, int cottageBuild, int castleBuild);
+	Property() = default;
+	Property(int index, const MyString& descr, int color, int baseRent, int basePur, int cottageBuild, int castleBuild);
 
 	bool hasMortgage() const;
 	const Mortgage* getMortgage() const;
@@ -28,10 +29,10 @@ public:
 	int getCottageBuildPrice() const;
 	int getCastleBuildPrice() const;
 
-	void setOwner(Player* player);
+	void setOwner(Player& player);
 	void removeOwner();
 
-	void buyMortgage(Mortgage* mortgage);
+	void buyMortgage(Mortgage& mort);
 	void removeMortgage(); // if building is sold / any of the buildings from this one's color -> remove das mortgaj
 
 	Field* clone() const override;

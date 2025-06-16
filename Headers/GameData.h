@@ -5,9 +5,6 @@
 #include "Entities/Fields/Field.h"
 #include "Entities/Cards/CardDeck.h"
 #include "Entities/Cards/Card.h"
-#include "Entities/Cards/GroupPaymentCard.h"
-#include "Entities/Cards/PaymentCard.h"
-#include "Entities/Cards/MovePositionCard.h"
 
 class GameData
 {
@@ -37,6 +34,7 @@ public:
 	int getCurrentPlayersCount() const;
 
     int getJailIndex() const;
+    int getJailTax();
     Field* getFieldAt(int index) const;
 
     void generateRandomDeck(size_t size);

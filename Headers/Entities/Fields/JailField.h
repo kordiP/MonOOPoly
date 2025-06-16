@@ -6,10 +6,10 @@ class JailField : public Field
 private:
 	int feeForEscape;
 public:
-	JailField();
+	JailField() = default;
 	JailField(int index, const MyString& content, int feeForEscape);
 
-	int getFeeForEscape();
+	int getFeeForEscape() const;
 
 	Field* clone() const override;
 	void steppedOnBy(Player& player) override;

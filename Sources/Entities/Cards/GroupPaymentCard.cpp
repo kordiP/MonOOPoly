@@ -1,10 +1,13 @@
 #include "../../../Headers/Entities/Cards/GroupPaymentCard.h"
 
-GroupPaymentCard::GroupPaymentCard()
+GroupPaymentCard::GroupPaymentCard() 
+	//: data(GameData::getInstance())
 {
 }
 
-GroupPaymentCard::GroupPaymentCard(int amount) : amountToPay(amount) {}
+GroupPaymentCard::GroupPaymentCard(int amount) : amountToPay(amount)
+//, data(GameData::getInstance()) 
+{}
 
 Card* GroupPaymentCard::clone() const
 {
@@ -27,10 +30,10 @@ void GroupPaymentCard::applyEffectTo(Player& player) const
 {
 	if (amountToPay < 0)
 	{
-		data.groupPayTo(player, amountToPay);
+		//data.groupPayTo(player, amountToPay);
 	}
 	else
 	{
-		data.groupPayFrom(player, amountToPay);
+		//data.groupPayFrom(player, amountToPay);
 	}
 }

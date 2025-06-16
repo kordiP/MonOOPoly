@@ -12,7 +12,7 @@ private:
 	MyString name;
 	char figure;
 	size_t currentPostionIndex = 0;
-	double balance = 0;
+	double balance = 1500;
 public:
 	Player();
 	Player(const MyString& playerName, char fig);

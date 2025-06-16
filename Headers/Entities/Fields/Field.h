@@ -1,15 +1,16 @@
 #pragma once
 #include "../Bank.h"
+#include "../../Utilities/Colors.h"
 
 class Field
 {
 private:
-	int indexOnBoard;
-	int color;
+	int indexOnBoard = -1;
+	int color = -1;
 	MyString description;
 public:
-	Field();
-	Field(int index, const MyString& descr, int color);
+	Field() = default;
+	Field(int index, const MyString& descr, int color = Colors::DEFAULT_COLOR);
 	virtual ~Field() = default;
 	virtual Field* clone() const = 0;
 
