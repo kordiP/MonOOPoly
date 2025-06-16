@@ -18,5 +18,7 @@ void MonopolyEngine::run()
 	{
 		std::cin >> input;
 		commandReader.executeCommand(input);
-	} while (input != "EndGame");
+	} while (input != "EndGame" || !data.isGameOver());
+
+	std::cout << "Exiting game."; // todo -> save to binary
 }

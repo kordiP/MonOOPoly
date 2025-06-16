@@ -33,7 +33,8 @@ public:
 	void removeOwner();
 
 	void buyMortgage(Mortgage& mort);
-	void removeMortgage(); // if building is sold / any of the buildings from this one's color -> remove das mortgaj
+	void removeMortgage();
+	bool isOwner(Player& player);
 
 	Field* clone() const override;
 	void steppedOnBy(Player& player) override;

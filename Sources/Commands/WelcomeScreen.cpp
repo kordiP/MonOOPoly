@@ -2,6 +2,10 @@
 
 void WelcomeScreen::execute() const
 {
+	if (data.getCurrentPlayerIndex() != -1)
+	{
+		throw std::logic_error("Game started already.");
+	}
 	std::cout << "Welcome to MonOOPoly!" << std::endl;
 	std::cout << "1. Start New Game by typing \"NewGame\"" << std::endl;
 	std::cout << "2. Continue Last Game by typing \"ContinueGame\"" << std::endl;

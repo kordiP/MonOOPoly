@@ -12,6 +12,11 @@ void GameData::generateBoard()
 	board.generate();
 }
 
+void GameData::printBoard()
+{
+	board.printBoard();
+}
+
 bool GameData::isNameTaken(const MyString& playerName)
 {
 	for (size_t i = 0; i < players.getSize(); i++)
@@ -54,6 +59,48 @@ int GameData::getJailTax()
 Field* GameData::getFieldAt(int index) const
 {
 	return board.getField(index);
+}
+
+int GameData::getTradeIndexInList(int fieldId, Player& from)
+{
+	return bank.getTradeIndexInList(fieldId, from);
+}
+
+int GameData::getTradeAmount(int tradeIndex)
+{
+	return bank.getTradeAmount(tradeIndex);
+}
+
+Property& GameData::getProperty(int atField)
+{
+	return dynamic_cast<Property&>(*getFieldAt(atField));
+}
+
+void GameData::acceptTrade(int tradeIndex)
+{
+	bank.acceptTrade(tradeIndex);
+}
+
+void GameData::forcePlayerToSell(Player& player, int totalAmountNeeded)
+{
+	std::cout << "You need to sell some of your properties, please choose which: ";
+
+	while (player.getBalance() < 0)
+	{
+		std::cout << "<Debt left: " << player.getBalance() << ">" << std::endl;
+
+		board.printPropertiesFor(player);
+		std::cout << "Enter the field index to sell: ";
+		int index;
+		std::cin >> index;
+
+		// todo
+	}
+}
+
+bool GameData::playerHasTradeOffer(int atField, Player& fromPlayer)
+{
+	return bank.playerHasTradeOffer(atField, fromPlayer);
 }
 
 void GameData::generateRandomDeck(size_t size)

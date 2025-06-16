@@ -34,11 +34,11 @@ public:
 	bool hasEnoughBalance(int debt) const;
 	// balance + sell price of all their properties
 	bool hasEnoughAssets(int debt) const;
-	bool inDebtFrom(int fieldIndex) const;
 
 	void moveBy(int count);
 	void moveTo(int fieldIndex);
 
+	double getBalance() const;
 	void increaseBalance(int amount);
 	void decreaseBalance(int amount);
 

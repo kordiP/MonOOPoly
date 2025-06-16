@@ -87,9 +87,6 @@
     <ClInclude Include="Headers\Commands\RollDice.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Commands\BuyProperty.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Headers\Commands\SellProperty.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -121,9 +118,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Headers\Commands\CommandInterpretor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\Commands\EndGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Headers\Commands\ViewTrades.h">
@@ -209,13 +203,7 @@
     <ClCompile Include="Sources\Commands\AcceptTrade.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Commands\BuyProperty.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Sources\Commands\ContinueGame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\Commands\EndGame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Commands\HelpMenu.cpp">

@@ -1,7 +1,6 @@
 #pragma once
 #include "Command.h"
 #include "AcceptTrade.h"
-#include "BuyProperty.h"
 #include "ContinueGame.h"
 #include "HelpMenu.h"
 #include "ProposeTrade.h"
@@ -10,7 +9,6 @@
 #include "SellProperty.h"
 #include "SetMortgage.h"
 #include "StartNewGame.h"
-#include "EndGame.h"
 #include "WelcomeScreen.h"
 #include "../Utilities/MyString.h"
 

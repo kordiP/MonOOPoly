@@ -7,6 +7,11 @@ void RollDice::execute() const
 		throw std::logic_error("Game not started.");
 	}
 
+	if (data.isGameOver())
+	{
+		data.performTurn();
+	}
+
 	Player& curPl = data.getCurrentPlayer();
 
 	size_t diceOne = rand() % 6 + 1;
@@ -14,9 +19,13 @@ void RollDice::execute() const
 
 	int jailAt = data.getJailIndex();
 
-	data.performTurn();
-
 	std::cout << "Rolled a " << diceOne << " and a " << diceTwo << std::endl;
+
+	if (curPl.isResigned() || curPl.hasToSkipTurn())
+	{
+		data.performTurn();
+		return;
+	}
 
 	if (diceOne == diceTwo)
 	{
@@ -56,4 +65,5 @@ void RollDice::execute() const
 	curPl.moveBy(diceOne + diceTwo);
 	Field* next = data.getFieldAt(curPl.getPositionIndex());
 	next->steppedOnBy(curPl);
+	data.performTurn();
 }

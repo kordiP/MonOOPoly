@@ -25,6 +25,12 @@ public:
     void takeAllAssets(Player& player);
     void giveStartingMoney();
 
-    void getAllTradesFor(Player& player);
+    int getTradeIndexInList(int fieldId, Player& from);
+    bool playerHasTradeOffer(int atField, Player& fromPlayer);
+
+    void acceptTrade(int tradeIndex);
+
+    void printAllTradesFor(Player& player);
+    int getTradeAmount(int tradeIndex);
     bool isTradeAccepted(int fieldIndex);
 };

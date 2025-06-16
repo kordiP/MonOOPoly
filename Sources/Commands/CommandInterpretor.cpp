@@ -30,10 +30,6 @@ void CommandInterpretor::executeCommand(const MyString& command)
 	{
 		currCommand = new AcceptTrade();
 	}
-	else if (command == "BuyProperty")
-	{
-		currCommand = new BuyProperty();
-	}
 	else if (command == "HelpMenu")
 	{
 		currCommand = new HelpMenu();
@@ -61,10 +57,6 @@ void CommandInterpretor::executeCommand(const MyString& command)
 	else if (command == "HelpMenu")
 	{
 		currCommand = new HelpMenu();
-	}
-	else if (command == "EndGame")
-	{
-		currCommand = new EndGame();
 	}
 
 	currCommand->execute();

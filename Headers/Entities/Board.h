@@ -7,6 +7,7 @@
 #include "../Entities/Fields/GoToJailField.h"
 #include "../Entities/Fields/Property.h"
 #include "../Entities/Fields/StartField.h"
+#include "../Entities/Player.h";
 
 class Board
 {
@@ -30,6 +31,8 @@ public:
 	Field* getField(int index);
     const Field* getField(int index) const;
 	int getJailIndex() const;
+    
+    void printPropertiesFor(Player& player);
 
 	void printBoard() const;
 };

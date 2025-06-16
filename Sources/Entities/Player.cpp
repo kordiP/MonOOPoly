@@ -69,17 +69,17 @@ bool Player::hasEnoughAssets(int debt) const
 	return false;
 }
 
-bool Player::inDebtFrom(int fieldIndex) const
-{
-	return false;
-}
-
 void Player::moveBy(int count)
 {
 }
 
 void Player::moveTo(int fieldIndex)
 {
+}
+
+double Player::getBalance() const
+{
+	return balance;
 }
 
 void Player::increaseBalance(int amount)

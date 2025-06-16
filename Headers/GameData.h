@@ -2,6 +2,7 @@
 #include "Entities/Board.h"
 #include "Entities/Bank.h"
 #include "Entities/Player.h"
+#include "Entities/Trade.h"
 #include "Entities/Fields/Field.h"
 #include "Entities/Cards/CardDeck.h"
 #include "Entities/Cards/Card.h"
@@ -28,6 +29,7 @@ public:
     static GameData& getInstance();
     bool isNameTaken(const MyString& playerName);
     void generateBoard();
+    void printBoard();
     void addPlayer(const MyString& playerName, char fig);
 
 	bool isGameOver() const;
@@ -36,6 +38,24 @@ public:
     int getJailIndex() const;
     int getJailTax();
     Field* getFieldAt(int index) const;
+
+    bool playerHasTradeOffer(int atField, Player& fromPlayer);
+    int getTradeIndexInList(int atField, Player& fromPlayer);
+    int getTradeAmount(int tradeIndex);
+    Property& getProperty(int atField);
+
+    void acceptTrade(int tradeIndex);
+    void printPlayerTrades(Player& player);
+
+    // + check if owner == curPl
+    bool isEligibleForMortgage(int fieldAt);
+
+    void removeTradesFrom(Player& pl);
+    void sellAllFieldsFrom(Player& pl);
+
+    void proposeTrade(Trade& trade);
+
+    void forcePlayerToSell(Player& player, int totalAmountNeeded);
 
     void generateRandomDeck(size_t size);
 

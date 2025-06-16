@@ -1,12 +1,14 @@
 #pragma once
 #include "Card.h"
+#include "../../GameData.h"
 
+class GameData;
 
 class GroupPaymentCard : public Card
 {
 private:
 	int amountToPay = 0;
-	// GameData& data;
+	GameData& data;
 public:
 	GroupPaymentCard();
 	GroupPaymentCard(int amount);

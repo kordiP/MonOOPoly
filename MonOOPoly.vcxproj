@@ -20,11 +20,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Headers\Commands\AcceptTrade.h" />
-    <ClInclude Include="Headers\Commands\BuyProperty.h" />
     <ClInclude Include="Headers\Commands\Command.h" />
     <ClInclude Include="Headers\Commands\CommandInterpretor.h" />
     <ClInclude Include="Headers\Commands\ContinueGame.h" />
-    <ClInclude Include="Headers\Commands\EndGame.h" />
     <ClInclude Include="Headers\Commands\HelpMenu.h" />
     <ClInclude Include="Headers\Commands\ProposeTrade.h" />
     <ClInclude Include="Headers\Commands\Resign.h" />
@@ -64,11 +62,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Commands\AcceptTrade.cpp" />
-    <ClCompile Include="Sources\Commands\BuyProperty.cpp" />
     <ClCompile Include="Sources\Commands\CommandInterpretor.cpp" />
     <ClCompile Include="Sources\Commands\Command.cpp" />
     <ClCompile Include="Sources\Commands\ContinueGame.cpp" />
-    <ClCompile Include="Sources\Commands\EndGame.cpp" />
     <ClCompile Include="Sources\Commands\HelpMenu.cpp" />
     <ClCompile Include="Sources\Commands\ProposeTrade.cpp" />
     <ClCompile Include="Sources\Commands\Resign.cpp" />

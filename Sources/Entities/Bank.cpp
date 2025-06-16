@@ -6,7 +6,7 @@ Bank& Bank::getInstance()
     return instance;
 }
 
-void Bank::getAllTradesFor(Player& player)
+void Bank::printAllTradesFor(Player& player)
 {
 }
 

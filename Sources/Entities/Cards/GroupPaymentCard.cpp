@@ -1,13 +1,10 @@
 #include "../../../Headers/Entities/Cards/GroupPaymentCard.h"
 
-GroupPaymentCard::GroupPaymentCard() 
-	//: data(GameData::getInstance())
-{
-}
+GroupPaymentCard::GroupPaymentCard(): data(GameData::getInstance())
+{ }
 
-GroupPaymentCard::GroupPaymentCard(int amount) : amountToPay(amount)
-//, data(GameData::getInstance()) 
-{}
+GroupPaymentCard::GroupPaymentCard(int amount) : amountToPay(amount), data(GameData::getInstance()) 
+{ }
 
 Card* GroupPaymentCard::clone() const
 {

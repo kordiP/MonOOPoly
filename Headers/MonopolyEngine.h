@@ -1,16 +1,13 @@
 #pragma once
 #include <iostream>
 #include "../Headers/Utilities/MyString.h"
-#include "../Headers/Utilities/MyVector.hpp"
-#include "../Headers/Entities/Board.h"
-#include "../Headers/Entities/Player.h"
-#include "../Headers/Entities/Bank.h"
-#include "../Headers/Entities/Cards/CardDeck.h"
 #include "../Headers/Commands/CommandInterpretor.h"
+#include "GameData.h"
 
 class MonopolyEngine
 {
 private:
+    GameData& data = GameData::getInstance();
     MonopolyEngine() = default; 
     ~MonopolyEngine() = default;
 

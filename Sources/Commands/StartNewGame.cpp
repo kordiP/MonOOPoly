@@ -2,6 +2,11 @@
 
 void StartNewGame::execute() const
 {
+	if (data.getCurrentPlayerIndex() != -1)
+	{
+		throw std::logic_error("Game started already.");
+	}
+
 	MyVector<char> figures;
 	figures.pushBack('!');
 	figures.pushBack('@');
@@ -47,4 +52,5 @@ void StartNewGame::execute() const
 	data.generateRandomDeck(cardDeckSize);
 	data.generateBoard();
 	data.performTurn();
+	data.printBoard();
 }

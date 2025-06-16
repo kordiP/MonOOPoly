@@ -108,6 +108,10 @@ int Board::getJailIndex() const
 	throw std::logic_error("Could not find jail index.");
 }
 
+void Board::printPropertiesFor(Player& player)
+{
+}
+
 void Board::printBoard() const
 {
 	// TODO
