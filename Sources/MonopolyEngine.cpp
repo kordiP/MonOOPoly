@@ -10,15 +10,22 @@ void MonopolyEngine::run()
 {
 	srand(time(0));
 
-	CommandInterpretor& commandReader = CommandInterpretor::getInstance();
-	MyString input;
-	commandReader.executeCommand("Initial");
-
-	do
+	try
 	{
-		std::cin >> input;
-		commandReader.executeCommand(input);
-	} while (input != "EndGame" || !data.isGameOver());
+		CommandInterpretor& commandReader = CommandInterpretor::getInstance();
+		MyString input;
+		commandReader.executeCommand("Initial");
 
-	std::cout << "Exiting game."; // todo -> save to binary
+		do
+		{
+			std::cin >> input;
+			commandReader.executeCommand(input);
+		} while (input != "EndGame" || !data.isGameOver());
+
+		std::cout << "Exiting game."; // todo -> save to binary
+	}
+	catch (const std::exception& e)
+	{
+		std::cout << e.what();
+	}
 }

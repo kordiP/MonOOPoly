@@ -24,6 +24,11 @@ void ProposeTrade::execute() const
 
 	Player& receiver = data.getPlayer(receiverName);
 
+	if (curPl.getName() == receiver.getName())
+	{
+		throw std::invalid_argument("Cannot send offers to yourself.");
+	}
+
 	Trade trade(&curPl, &receiver, description, fieldIndex, requestedAmount);
 	data.proposeTrade(trade);
 	data.printBoard();

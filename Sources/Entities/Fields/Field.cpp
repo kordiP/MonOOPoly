@@ -17,6 +17,11 @@ int Field::getColor() const
 	return color;
 }
 
+const MyString& Field::getDescription() const
+{
+	return description;
+}
+
 	//namespace
 	//{
 	//	const int FG_BLACK_BG_GREY = 0 + 16 * 8;

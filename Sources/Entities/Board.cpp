@@ -81,7 +81,6 @@ int Board::getBoardSize() const
 
 int Board::getJailTax() const
 {
-	// what the fucking shit 
 	return dynamic_cast<const JailField*>(fields[getJailIndex()])->getFeeForEscape();
 }
 
@@ -110,9 +109,26 @@ int Board::getJailIndex() const
 
 void Board::printPropertiesFor(Player& player)
 {
+	for (size_t i = 0; i < getBoardSize(); i++)
+	{
+		Property* prop = dynamic_cast<Property*>(fields[i]);
+
+		if (prop == nullptr)
+		{
+			continue;
+		}
+
+		if (prop->isOwner(player))
+		{
+			std::cout << prop->getFieldIndex() << std::endl;
+			std::cout << prop->getDescription() << std::endl;
+			// std::cout << prop->getColor() << std::endl;
+		}
+	}
 }
 
 void Board::printBoard() const
 {
-	// TODO
+	std::cout << "Board will be finished soon, I just need to submit by now. Sorry for the inconvenience.";
+	throw std::logic_error("Not implemented");
 }

@@ -30,18 +30,19 @@ void StartNewGame::execute() const
 			{
 				std::cout << "Hey, you need atleast 2 players, come on." << std::endl;
 				i--;
-				continue;				
-			}
-			
-			if (data.isNameTaken(playerName))
-			{
-				std::cout << "Names should be unique." << std::endl;
-				i--;
 				continue;
 			}
 
 			break;
 		}
+
+		if (data.isNameTaken(playerName))
+		{
+			std::cout << "Names should be unique." << std::endl;
+			i--;
+			continue;
+		}
+
 
 		data.addPlayer(playerName, figures[i]);
 	}

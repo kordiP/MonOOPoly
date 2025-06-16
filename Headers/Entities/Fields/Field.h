@@ -17,8 +17,7 @@ public:
 	int getFieldIndex() const;
 	int getColor() const;
 	virtual void steppedOnBy(Player& player) = 0;
-	virtual void print() const = 0;
-	virtual void printDescription() const = 0;
+	const MyString& getDescription() const;
 
 	virtual void saveToFile(std::ofstream& ofs) const = 0;
 };

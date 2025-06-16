@@ -7,12 +7,12 @@ Castle::Castle()
 
 double Castle::getRentIncrease() const
 {
-	return 0.0;
+	return increaseMultipl;
 }
 
 Mortgage* Castle::clone() const
 {
-	return nullptr;
+	return new Castle(*this);
 }
 
 void Castle::saveToFile(std::ofstream& ofs) const

@@ -1,28 +1,17 @@
 #include "../../../Headers/Entities/Fields/CarPark.h"
 
-CarPark::CarPark()
-{
-}
-
 CarPark::CarPark(int index, const MyString& descr) : Field(index, descr)
 {
 }
 
 Field* CarPark::clone() const
 {
-    return nullptr;
+    return new CarPark(*this);
 }
 
 void CarPark::steppedOnBy(Player& player)
 {
-}
-
-void CarPark::print() const
-{
-}
-
-void CarPark::printDescription() const
-{
+    player.moveBy(0);
 }
 
 void CarPark::saveToFile(std::ofstream& ofs) const

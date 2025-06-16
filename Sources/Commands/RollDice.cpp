@@ -21,7 +21,7 @@ void RollDice::execute() const
 
 	std::cout << "Rolled a " << diceOne << " and a " << diceTwo << std::endl;
 
-	if (curPl.isResigned() || curPl.hasToSkipTurn())
+	if (curPl.isResigned() || curPl.toSkipTurn())
 	{
 		data.performTurn();
 		return;
@@ -54,6 +54,7 @@ void RollDice::execute() const
 		if (wantsToPay == "Pay")
 		{
 			curPl.decreaseBalance(data.getJailTax());
+			curPl.moveBy(4);
 		}
 		else
 		{

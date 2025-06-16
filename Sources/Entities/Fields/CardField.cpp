@@ -10,19 +10,12 @@ CardField::CardField(int index, const MyString& descr) : deck(CardDeck::getInsta
 
 Field* CardField::clone() const
 {
-    return nullptr;
+    return new CardField(*this);
 }
 
 void CardField::steppedOnBy(Player& player)
 {
-}
-
-void CardField::print() const
-{
-}
-
-void CardField::printDescription() const
-{
+    deck.drawCard(player);
 }
 
 void CardField::saveToFile(std::ofstream& ofs) const

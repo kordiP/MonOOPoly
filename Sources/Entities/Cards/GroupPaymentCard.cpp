@@ -1,4 +1,5 @@
 #include "../../../Headers/Entities/Cards/GroupPaymentCard.h"
+#include "../../../Headers/GameData.h"
 
 GroupPaymentCard::GroupPaymentCard(): data(GameData::getInstance())
 { }
@@ -27,10 +28,10 @@ void GroupPaymentCard::applyEffectTo(Player& player) const
 {
 	if (amountToPay < 0)
 	{
-		//data.groupPayTo(player, amountToPay);
+		data.groupPayTo(player, amountToPay);
 	}
 	else
 	{
-		//data.groupPayFrom(player, amountToPay);
+		data.groupPayFrom(player, amountToPay);
 	}
 }

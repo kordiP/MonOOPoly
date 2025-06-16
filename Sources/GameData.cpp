@@ -81,6 +81,27 @@ void GameData::acceptTrade(int tradeIndex)
 	bank.acceptTrade(tradeIndex);
 }
 
+void GameData::printPlayerTrades(Player& player)
+{
+}
+
+bool GameData::isEligibleForMortgage(int fieldAt)
+{
+	return false;
+}
+
+void GameData::removeTradesFrom(Player& pl)
+{
+}
+
+void GameData::sellAllFieldsFrom(Player& pl)
+{
+}
+
+void GameData::proposeTrade(Trade& trade)
+{
+}
+
 void GameData::forcePlayerToSell(Player& player, int totalAmountNeeded)
 {
 	std::cout << "You need to sell some of your properties, please choose which: ";

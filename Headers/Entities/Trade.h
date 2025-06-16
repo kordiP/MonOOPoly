@@ -10,15 +10,15 @@ private:
 
 	MyString offer;
 	// for which property it is
-	int fieldIndex;
-	int amount;
+	int fieldIndex = -1;
+	int amount = -1;
 
 public:
 	Trade() = default;
 	Trade(Player* sender, Player* receiver, const MyString& offer, int fieldIndex, int amount);
 
-	int getSenderIndex() const;
-	int getReceiverIndex() const;
+	const MyString& getSenderName() const;
+	const MyString& getReceiverName() const;
 	bool gotAccepted() const;
 	int getFieldIndex() const;
 	int getRequestedAmount() const;

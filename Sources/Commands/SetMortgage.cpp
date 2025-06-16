@@ -9,9 +9,7 @@ void SetMortgage::execute() const
 
 	Player& curPl = data.getCurrentPlayer();
 
-	std::cout << "Write which field the mortgage would be at: ";
-	int fieldAt;
-	std::cin >> fieldAt;
+	int fieldAt = curPl.getPositionIndex();
 
 	if (!data.isEligibleForMortgage(fieldAt))
 	{

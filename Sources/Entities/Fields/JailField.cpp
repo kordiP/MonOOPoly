@@ -17,14 +17,7 @@ Field* JailField::clone() const
 
 void JailField::steppedOnBy(Player& player)
 {
-}
-
-void JailField::print() const
-{
-}
-
-void JailField::printDescription() const
-{
+	player.shouldSkipTurn(true);
 }
 
 void JailField::saveToFile(std::ofstream& ofs) const

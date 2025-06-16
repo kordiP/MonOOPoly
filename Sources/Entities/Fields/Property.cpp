@@ -51,17 +51,22 @@ void Property::buyMortgage(Mortgage& mort)
 {
 	if (dynamic_cast<Castle*>(&mort))
 	{
-		owner->buyCastle(getFieldIndex());
+		owner->decreaseBalance(castleBuildPrice);
 	}
 	else if (dynamic_cast<Cottage*>(&mort))
 	{
-		owner->buyCottage(getFieldIndex());
+		owner->decreaseBalance(cottageBuildPrice);
 	}
 }
 
 void Property::removeMortgage()
 {
 	mortgage = nullptr;
+}
+
+bool Property::isOwner(Player& player)
+{
+	return owner == &player;
 }
 
 Field* Property::clone() const
@@ -71,14 +76,27 @@ Field* Property::clone() const
 
 void Property::steppedOnBy(Player& player)
 {
-}
+	if (owner == nullptr)
+	{
+		std::cout << "This property is unoccupied yet. Type \"Buy\" to buy it for " << basePurchase;
+		MyString resp;
+		std::cin >> resp;
 
-void Property::print() const
-{
-}
-
-void Property::printDescription() const
-{
+		if (resp == "Buy")
+		{
+			player.decreaseBalance(basePurchase);
+			owner = &player;
+		}
+	}
+	else if (owner != nullptr)
+	{
+		double finalAmount = baseRent;
+		if (mortgage != nullptr)
+		{
+			finalAmount *= mortgage->getRentIncrease();
+		}
+		std::cout << "You stepped on another player's property, the rent is " << finalAmount;
+	}
 }
 
 void Property::saveToFile(std::ofstream& ofs) const

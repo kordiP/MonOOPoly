@@ -1,11 +1,9 @@
 #include "../../Headers/Entities/Player.h"
 
-Player::Player()
-{
-}
-
 Player::Player(const MyString& playerName, char fig)
 {
+	name = playerName;
+	figure = fig;
 }
 
 const MyString& Player::getName() const
@@ -15,66 +13,77 @@ const MyString& Player::getName() const
 
 int Player::getConsecPairsCount() const
 {
-	return 0;
+	return consecPairs;
 }
 
 void Player::pairThrown()
 {
+	consecPairs++;
 }
 
 char Player::getFigure() const
 {
-	return 0;
+	return figure;
 }
 
 int Player::getPositionIndex() const
 {
-	return 0;
+	return currentPostionIndex;
 }
 
 void Player::resign()
 {
+	isInGame = false;
 }
 
 bool Player::isResigned() const
 {
-	return false;
+	return !isInGame;
 }
 
 bool Player::toSkipTurn() const
 {
-	return false;
+	return hasToSkip;
 }
 
 void Player::resetPairCount()
 {
-}
-
-bool Player::hasToSkipTurn()
-{
-	return false;
+	consecPairs = 0;
 }
 
 void Player::shouldSkipTurn(bool skip)
 {
+	hasToSkip = skip;
 }
 
 bool Player::hasEnoughBalance(int debt) const
 {
-	return false;
+	return balance >= debt;
 }
 
 bool Player::hasEnoughAssets(int debt) const
 {
-	return false;
+	return balance >= debt;
 }
 
 void Player::moveBy(int count)
 {
+	currentPostionIndex += count;
+
+	if (currentPostionIndex >= 32)
+	{
+		currentPostionIndex -= 32;
+	}
 }
 
 void Player::moveTo(int fieldIndex)
 {
+	currentPostionIndex = fieldIndex;
+
+	if (currentPostionIndex >= 32)
+	{
+		currentPostionIndex -= 32;
+	}
 }
 
 double Player::getBalance() const
@@ -84,22 +93,12 @@ double Player::getBalance() const
 
 void Player::increaseBalance(int amount)
 {
+	balance += amount;
 }
 
 void Player::decreaseBalance(int amount)
 {
-}
-
-void Player::buyCastle(int fieldIndex)
-{
-}
-
-void Player::buyCottage(int fieldIndex)
-{
-}
-
-void Player::sellProperty(int fieldIndex)
-{
+	balance -= amount;
 }
 
 void Player::saveToFile(std::ofstream& ofs) const

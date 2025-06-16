@@ -2,6 +2,7 @@
 #include "../Entities/Trade.h"
 #include "../Entities/Player.h"
 #include "../Utilities/MyVector.hpp"
+#include "../Utilities/MyString.h"
 
 class Bank
 {
@@ -14,16 +15,8 @@ private:
     Bank& operator=(const Bank&) = delete;
     Bank(Bank&&) = delete;
     Bank& operator=(Bank&&) = delete;
-
-    Trade& getTrade(int fieldIndex);
-    const Trade& getTrade(int fieldIndex) const;
 public:
     static Bank& getInstance();
-
-    void payGetOutOfJail(Player& player);
-    // basically, set property owner to nullptr
-    void takeAllAssets(Player& player);
-    void giveStartingMoney();
 
     int getTradeIndexInList(int fieldId, Player& from);
     bool playerHasTradeOffer(int atField, Player& fromPlayer);
@@ -32,5 +25,4 @@ public:
 
     void printAllTradesFor(Player& player);
     int getTradeAmount(int tradeIndex);
-    bool isTradeAccepted(int fieldIndex);
 };

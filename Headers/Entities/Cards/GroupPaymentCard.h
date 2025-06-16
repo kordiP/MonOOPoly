@@ -1,6 +1,5 @@
 #pragma once
 #include "Card.h"
-#include "../../GameData.h"
 
 class GameData;
 

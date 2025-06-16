@@ -8,31 +8,51 @@ Bank& Bank::getInstance()
 
 void Bank::printAllTradesFor(Player& player)
 {
+    for (size_t i = 0; i < trades.getSize(); i++)
+    {
+        if (trades[i].getReceiverName() == player.getName() && !trades[i].gotAccepted())
+        {
+            trades[i].printTrade();
+        }
+    }
 }
 
-bool Bank::isTradeAccepted(int fieldIndex)
+int Bank::getTradeIndexInList(int fieldId, Player& from)
 {
+    for (size_t i = 0; i < trades.getSize(); i++)
+    {
+        if (trades[i].getSenderName() == from.getName() && !trades[i].gotAccepted())
+        {
+            if (trades[i].getFieldIndex() == fieldId)
+            {
+                return i;
+            }
+        }
+    }
+}
+
+bool Bank::playerHasTradeOffer(int atField, Player& fromPlayer)
+{
+    for (size_t i = 0; i < trades.getSize(); i++)
+    {
+        if (trades[i].getSenderName() == fromPlayer.getName() && !trades[i].gotAccepted())
+        {
+            if (trades[i].getFieldIndex() == atField)
+            {
+                return true;
+            }
+        }
+    }
+
     return false;
 }
 
-Trade& Bank::getTrade(int fieldIndex)
+void Bank::acceptTrade(int tradeIndex)
 {
-    return trades[0];
+    trades[tradeIndex].acceptOffer();
 }
 
-const Trade& Bank::getTrade(int fieldIndex) const
+int Bank::getTradeAmount(int tradeIndex)
 {
-    return trades[0];
-}
-
-void Bank::payGetOutOfJail(Player& player)
-{
-}
-
-void Bank::takeAllAssets(Player& player)
-{
-}
-
-void Bank::giveStartingMoney()
-{
+    return trades[tradeIndex].getRequestedAmount();
 }
