@@ -10,7 +10,7 @@ private:
 	int consecPairs = 0;
 
 	MyString name;
-	char figure;
+	char figure = 0;
 	size_t currentPostionIndex = -1;
 	double balance = 1500;
 public:

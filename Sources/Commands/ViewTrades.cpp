@@ -1,7 +1,7 @@
 #include "../../Headers/Commands/ViewTrades.h"
 void ViewTrades::execute() const
 {
-	if (data.getCurrentPlayerIndex() == -1)
+	if (!data.isGameStarted())
 	{
 		throw std::logic_error("Game not started.");
 	}

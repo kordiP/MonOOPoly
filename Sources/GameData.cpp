@@ -53,6 +53,16 @@ void GameData::addPlayer(const MyString& playerName, char fig)
 	players.pushBack(player);
 }
 
+bool GameData::isGameStarted() const
+{
+	if (players.getSize() <= 0 || currentPlayerIndex == -1)
+	{
+		return false;
+	}
+
+	return true;
+}
+
 bool GameData::isGameOver() const
 {
 	return gameEnded;
@@ -197,7 +207,7 @@ void GameData::groupPayTo(Player& player, int amount)
 // just handle who is at turn / who is currPlayer
 void GameData::performTurn()
 {
-	if (players.getSize() <= 0)
+	if (!isGameStarted())
 	{
 		throw std::logic_error("Not initialized, cannot perform turn.");
 	}

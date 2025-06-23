@@ -33,6 +33,7 @@ public:
     void clearBoard();
     void addPlayer(const MyString& playerName, char fig);
 
+    bool isGameStarted() const;
 	bool isGameOver() const;
 	int getCurrentPlayersCount() const;
 

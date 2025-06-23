@@ -2,7 +2,7 @@
 
 void SellProperty::execute() const
 {
-	if (data.getCurrentPlayerIndex() == -1)
+	if (!data.isGameStarted())
 	{
 		throw std::logic_error("Game not started.");
 	}
