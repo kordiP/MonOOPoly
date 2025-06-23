@@ -17,4 +17,5 @@ void GoToJailField::steppedOnBy(Player& player)
 
 void GoToJailField::saveToFile(std::ofstream& ofs) const
 {
+	// todo
 }

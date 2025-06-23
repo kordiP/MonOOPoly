@@ -103,4 +103,5 @@ void Player::decreaseBalance(int amount)
 
 void Player::saveToFile(std::ofstream& ofs) const
 {
+	// todo
 }

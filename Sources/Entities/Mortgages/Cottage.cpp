@@ -17,4 +17,5 @@ Mortgage* Cottage::clone() const
 
 void Cottage::saveToFile(std::ofstream& ofs) const
 {
+    // todo
 }

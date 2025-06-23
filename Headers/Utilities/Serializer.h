@@ -20,6 +20,8 @@ namespace
 	9. 
 */
 
+// todo
+
 class Serializer
 {
 private:

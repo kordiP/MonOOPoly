@@ -6,6 +6,8 @@ void StartNewGame::execute() const
 	{
 		throw std::logic_error("Game started already.");
 	}
+	
+	data.clearBoard();
 
 	MyVector<char> figures;
 	figures.pushBack('!');

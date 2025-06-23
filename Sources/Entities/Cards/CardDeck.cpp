@@ -33,6 +33,5 @@ void CardDeck::generateRandomDeck(size_t size)
 
 void CardDeck::drawCard(Player& player)
 {
-	deck.top().applyEffectTo(player);
-	deck.popToBottom();
+	deck.popToBottom()->applyEffectTo(player);
 }

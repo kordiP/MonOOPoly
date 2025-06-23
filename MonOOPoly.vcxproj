@@ -61,6 +61,7 @@
     <ClInclude Include="Headers\Utilities\Stack.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Sources\Utilities\Serializer.cpp" />
     <ClCompile Include="Sources\Commands\AcceptTrade.cpp" />
     <ClCompile Include="Sources\Commands\CommandInterpretor.cpp" />
     <ClCompile Include="Sources\Commands\Command.cpp" />
@@ -97,7 +98,6 @@
     <ClCompile Include="Sources\MonOOPoly.cpp" />
     <ClCompile Include="Sources\MonopolyEngine.cpp" />
     <ClCompile Include="Sources\Utilities\MyString.cpp" />
-    <ClCompile Include="Sources\Utilities\Serializers.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ResourceFiles\game.bin" />

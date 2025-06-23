@@ -13,7 +13,7 @@ void Board::generate()
 	for (size_t i = 1; i < 4; i++)
 	{
 		// here prices are modified to be going up, like in the real game, with a small difference in price
-		Property prop(i, "Cheap buildings, but many people get here.", -1, 50 + i, 250 + i, 125 + i, 175 + i);
+		Property prop(i, "Cheap buildings, but many people get here.", Colors::FG_BLACK_BG_YELLOW, 50 + i, 250 + i, 125 + i, 175 + i);
 		fields.pushBack(prop);
 	}
 
@@ -21,7 +21,7 @@ void Board::generate()
 	fields.pushBack(park1);
 	for (size_t i = 5; i < 8; i++)
 	{
-		Property prop(i, "The downtown buildings, prices get steeper.", -1, 50 + i, 250 + i, 125 + i, 175 + i);
+		Property prop(i, "The downtown buildings, prices get steeper.", Colors::FG_BLACK_BG_AQUA, 50 + i, 250 + i, 125 + i, 175 + i);
 		fields.pushBack(prop);
 	}
 
@@ -29,7 +29,7 @@ void Board::generate()
 	fields.pushBack(jail);
 	for (size_t i = 9; i < 12; i++)
 	{
-		Property prop(i, "Mid buildings, not too much traffic.", -1, 50 + i, 250 + i, 125 + i, 175 + i);
+		Property prop(i, "Mid buildings, not too much traffic.", Colors::FG_BLACK_BG_LIGHTRED, 50 + i, 250 + i, 125 + i, 175 + i);
 		fields.pushBack(prop);
 	}
 
@@ -37,7 +37,7 @@ void Board::generate()
 	fields.pushBack(park2);
 	for (size_t i = 13; i < 16; i++)
 	{
-		Property prop(i, "Affordable buildings, with mild popularity.", -1, 50 + i, 250 + i, 125 + i, 175 + i);
+		Property prop(i, "Affordable buildings, with mild popularity.", Colors::FG_WHITE_BG_GREEN, 50 + i, 250 + i, 125 + i, 175 + i);
 		fields.pushBack(prop);
 	}
 
@@ -45,15 +45,15 @@ void Board::generate()
 	fields.pushBack(cardF1);
 	for (size_t i = 17; i < 20; i++)
 	{
-		Property prop(i, "The city center, but not the most expensive.", -1, 50 + i, 250 + i, 125 + i, 175 + i);
+		Property prop(i, "The city center, but not the most expensive.", Colors::FG_WHITE_BG_RED, 50 + i, 250 + i, 125 + i, 175 + i);
 		fields.pushBack(prop);
 	}
 
-	GoToJailField goToJail(20, "This is the starting field. Pass by and get 100$!", 8);
+	GoToJailField goToJail(20, "Sent to jail!", 8);
 	fields.pushBack(goToJail);
 	for (size_t i = 21; i < 24; i++)
 	{
-		Property prop(i, "The luxorious fields of town.", -1, 50 + i, 250 + i, 125 + i, 175 + i);
+		Property prop(i, "The luxorious fields of town.", Colors::FG_WHITE_BG_BLUE, 50 + i, 250 + i, 125 + i, 175 + i);
 		fields.pushBack(prop);
 	}
 
@@ -61,7 +61,7 @@ void Board::generate()
 	fields.pushBack(cardF2);
 	for (size_t i = 25; i < 28; i++)
 	{
-		Property prop(i, "Office buildings, really expensive.", -1, 50 + i, 250 + i, 125 + i, 175 + i);
+		Property prop(i, "Office buildings, really expensive.", Colors::FG_BLACK_BG_GREY, 50 + i, 250 + i, 125 + i, 175 + i);
 		fields.pushBack(prop);
 	}
 
@@ -69,7 +69,7 @@ void Board::generate()
 	fields.pushBack(park3);
 	for (size_t i = 29; i < 31; i++)
 	{
-		Property prop(i, "The best buildings, get them while you can.", -1, 50 + i, 250 + i, 125 + i, 175 + i);
+		Property prop(i, "The best buildings, get them while you can.", Colors::FG_WHITE_BG_PURPLE, 50 + i, 250 + i, 125 + i, 175 + i);
 		fields.pushBack(prop);
 	}
 }
@@ -109,6 +109,7 @@ int Board::getJailIndex() const
 
 void Board::printPropertiesFor(Player& player)
 {
+	// todo
 	for (size_t i = 0; i < getBoardSize(); i++)
 	{
 		Property* prop = dynamic_cast<Property*>(fields[i]);
@@ -129,6 +130,5 @@ void Board::printPropertiesFor(Player& player)
 
 void Board::printBoard() const
 {
-	std::cout << "Board will be finished soon, I just need to submit by now. Sorry for the inconvenience.";
-	throw std::logic_error("Not implemented");
+	// todo
 }

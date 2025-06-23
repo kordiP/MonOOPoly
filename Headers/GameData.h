@@ -30,6 +30,7 @@ public:
     bool isNameTaken(const MyString& playerName);
     void generateBoard();
     void printBoard();
+    void clearBoard();
     void addPlayer(const MyString& playerName, char fig);
 
 	bool isGameOver() const;

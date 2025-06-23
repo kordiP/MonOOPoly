@@ -1,8 +1,6 @@
 #include "../../../Headers/Entities/Fields/StartField.h"
 
-StartField::StartField(int index, const MyString& content) : Field(index, content, 0)
-{
-}
+StartField::StartField(int index, const MyString& content) : Field(index, content) { }
 
 Field* StartField::clone() const
 {
@@ -16,4 +14,5 @@ void StartField::steppedOnBy(Player& player)
 
 void StartField::saveToFile(std::ofstream& ofs) const
 {
+    // todo
 }

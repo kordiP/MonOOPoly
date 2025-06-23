@@ -7,6 +7,8 @@ void ProposeTrade::execute() const
 		throw std::logic_error("Game not started.");
 	}
 
+	data.clearBoard();
+
 	Player& curPl = data.getCurrentPlayer();
 
 	int fieldIndex, requestedAmount;

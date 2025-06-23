@@ -1,7 +1,18 @@
+#include "../Headers/Entities/Bank.h"
+#include "../Headers/Entities/Board.h"
+#include "../Headers/Entities/Cards/CardDeck.h"
+#include "../Headers/Entities/Fields/Field.h"
+#include "../Headers/Entities/Fields/Property.h"
+#include "../Headers/Entities/Player.h"
+#include "../Headers/Entities/Trade.h"
 #include "../Headers/GameData.h"
-GameData::GameData() : board(Board::getInstance()), bank(Bank::getInstance()), deck(CardDeck::getInstance()) { }
+#include "../Headers/Utilities/MyString.h"
+#include <iostream>
+#include <ostream>
+#include <stdexcept>
+GameData::GameData() : board(Board::getInstance()), bank(Bank::getInstance()), deck(CardDeck::getInstance()) {}
 
-GameData& GameData::getInstance() 
+GameData& GameData::getInstance()
 {
 	static GameData instance;
 	return instance;
@@ -15,6 +26,12 @@ void GameData::generateBoard()
 void GameData::printBoard()
 {
 	board.printBoard();
+}
+
+void GameData::clearBoard()
+{
+	std::cout << "\033[;H"; // Moves cursor to the top left
+	std::cout << "\033[J"; // Clears the console
 }
 
 bool GameData::isNameTaken(const MyString& playerName)
@@ -83,23 +100,37 @@ void GameData::acceptTrade(int tradeIndex)
 
 void GameData::printPlayerTrades(Player& player)
 {
+	// todo
 }
 
 bool GameData::isEligibleForMortgage(int fieldAt)
 {
-	return false;
+	Property& prop = getProperty(fieldAt);
+	Player& curPl = getCurrentPlayer();
+
+	if (!prop.isOwner(curPl))
+	{
+		return false;
+	}
+
+	// todo
+
+	return true;
 }
 
 void GameData::removeTradesFrom(Player& pl)
 {
+	// todo
 }
 
 void GameData::sellAllFieldsFrom(Player& pl)
 {
+	// todo
 }
 
 void GameData::proposeTrade(Trade& trade)
 {
+	// todo
 }
 
 void GameData::forcePlayerToSell(Player& player, int totalAmountNeeded)
@@ -171,6 +202,11 @@ void GameData::performTurn()
 		throw std::logic_error("Not initialized, cannot perform turn.");
 	}
 
+	if (isGameOver())
+	{
+		throw std::logic_error("Game already finished.");
+	}
+
 	if (currentPlayerIndex == -1 || currentPlayerIndex >= players.getSize())
 	{
 		currentPlayerIndex = 0;
@@ -198,8 +234,6 @@ void GameData::performTurn()
 	}
 
 	currentPlayerIndex++;
-
-	board.printBoard();
 }
 
 int GameData::getCurrentPlayerIndex() const

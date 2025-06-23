@@ -101,4 +101,5 @@ void Property::steppedOnBy(Player& player)
 
 void Property::saveToFile(std::ofstream& ofs) const
 {
+	// todo
 }

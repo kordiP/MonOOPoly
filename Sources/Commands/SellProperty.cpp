@@ -7,6 +7,8 @@ void SellProperty::execute() const
 		throw std::logic_error("Game not started.");
 	}
 
+	data.clearBoard();
+
 	Player& curPl = data.getCurrentPlayer();
 
 	std::cout << "Please enter the index of the field you want to sell: ";

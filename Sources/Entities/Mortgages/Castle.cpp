@@ -17,4 +17,5 @@ Mortgage* Castle::clone() const
 
 void Castle::saveToFile(std::ofstream& ofs) const
 {
+	// todo
 }

@@ -1,12 +1,8 @@
 #include "../../../Headers/Entities/Fields/CardField.h"
 
-CardField::CardField() : deck(CardDeck::getInstance())
-{
-}
+CardField::CardField() : deck(CardDeck::getInstance()) { }
 
-CardField::CardField(int index, const MyString& descr) : deck(CardDeck::getInstance()), Field(index, descr)
-{
-}
+CardField::CardField(int index, const MyString& descr) : deck(CardDeck::getInstance()), Field(index, descr) { }
 
 Field* CardField::clone() const
 {
@@ -20,4 +16,5 @@ void CardField::steppedOnBy(Player& player)
 
 void CardField::saveToFile(std::ofstream& ofs) const
 {
+    // todo
 }

@@ -1,8 +1,6 @@
 #include "../../../Headers/Entities/Fields/CarPark.h"
 
-CarPark::CarPark(int index, const MyString& descr) : Field(index, descr)
-{
-}
+CarPark::CarPark(int index, const MyString& descr) : Field(index, descr) { }
 
 Field* CarPark::clone() const
 {
@@ -16,4 +14,5 @@ void CarPark::steppedOnBy(Player& player)
 
 void CarPark::saveToFile(std::ofstream& ofs) const
 {
+    // todo
 }

@@ -7,10 +7,9 @@ void RollDice::execute() const
 		throw std::logic_error("Game not started.");
 	}
 
-	if (data.isGameOver())
-	{
-		data.performTurn();
-	}
+	data.clearBoard();
+
+	data.performTurn();
 
 	Player& curPl = data.getCurrentPlayer();
 
@@ -20,12 +19,6 @@ void RollDice::execute() const
 	int jailAt = data.getJailIndex();
 
 	std::cout << "Rolled a " << diceOne << " and a " << diceTwo << std::endl;
-
-	if (curPl.isResigned() || curPl.toSkipTurn())
-	{
-		data.performTurn();
-		return;
-	}
 
 	if (diceOne == diceTwo)
 	{
@@ -37,24 +30,27 @@ void RollDice::execute() const
 		std::cout << "Three consecutive pairs? Cheater behaviour, jail." << std::endl;
 
 		curPl.moveTo(jailAt);
-		curPl.resetPairCount();
-		curPl.shouldSkipTurn(true);
+		data.getFieldAt(jailAt)->steppedOnBy(curPl);
+		return;
 	}
 
 	if (curPl.getPositionIndex() == jailAt && diceOne == diceTwo)
 	{
 		std::cout << "Lucky you, no longer in jail. The pair frees you!" << std::endl;
 	}
-	else if (curPl.getPositionIndex() == jailAt)
+
+	else if (curPl.getPositionIndex() == jailAt && diceOne != diceTwo)
 	{
-		std::cout << "The roll was unsuccessfull. Would you like to pay to get out? If so, type \"Pay\"" << std::endl;
+		std::cout << "The roll was unsuccessfull. Would you like to pay to get out? It costs " 
+			<< data.getJailTax() << ". If so, type \"Pay\"" << std::endl;
 		MyString wantsToPay;
 		std::cin >> wantsToPay;
 
 		if (wantsToPay == "Pay")
 		{
+			std::cout << "You will now go to the free parking area." << std::endl;
 			curPl.decreaseBalance(data.getJailTax());
-			curPl.moveBy(4);
+			diceOne = diceTwo = 2;
 		}
 		else
 		{
@@ -64,7 +60,13 @@ void RollDice::execute() const
 	}
 
 	curPl.moveBy(diceOne + diceTwo);
-	Field* next = data.getFieldAt(curPl.getPositionIndex());
-	next->steppedOnBy(curPl);
-	data.performTurn();
+
+	// if this is < 0 it means we have passed the start
+	if (curPl.getPositionIndex() - (diceOne + diceTwo) < 0)
+	{
+		data.getFieldAt(0)->steppedOnBy(curPl);
+	}
+
+	data.getFieldAt(curPl.getPositionIndex())->steppedOnBy(curPl);
+	data.printBoard();
 }

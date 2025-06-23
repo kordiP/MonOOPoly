@@ -18,8 +18,10 @@ Field* JailField::clone() const
 void JailField::steppedOnBy(Player& player)
 {
 	player.shouldSkipTurn(true);
+	player.resetPairCount();
 }
 
 void JailField::saveToFile(std::ofstream& ofs) const
 {
+	// todo
 }
