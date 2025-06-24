@@ -12,13 +12,20 @@ Field* GoToJailField::clone() const
 
 void GoToJailField::steppedOnBy(Player& player)
 {
-	std::cout << "COP! Straight to jail." << std::endl;
+	std::cout << "A COP SENT YOU TO JAIL!" << std::endl;
 	player.moveTo(jailFieldIndex);
 }
 
 void GoToJailField::saveToFile(std::ofstream& ofs) const
 {
-	// todo
+	const char* type = "GoToJailField";
+	int length = strlen(type);
+	ofs.write(reinterpret_cast<const char*>(&length), sizeof(length));
+	ofs.write(type, length);
+
+	int index = getFieldIndex();
+	ofs.write(reinterpret_cast<const char*>(index), sizeof(index));
+	ofs.write(reinterpret_cast<const char*>(jailFieldIndex), sizeof(jailFieldIndex));
 }
 
 MyString GoToJailField::getPrintInfo() const

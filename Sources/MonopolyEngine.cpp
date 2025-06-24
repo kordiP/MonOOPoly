@@ -23,7 +23,7 @@ void MonopolyEngine::run()
 			input = "";
 		} while (input != "EndGame" || !data.isGameOver());
 
-		std::cout << "Exiting game."; 
+		std::cout << "Exiting game. Progress will be saved."; 
 		// todo -> save to binary
 	}
 	catch (const std::exception& e)

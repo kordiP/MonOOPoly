@@ -24,7 +24,15 @@ void JailField::steppedOnBy(Player& player)
 
 void JailField::saveToFile(std::ofstream& ofs) const
 {
-	// todo
+	const char* type = "JailField";
+	int length = strlen(type);
+	ofs.write(reinterpret_cast<const char*>(&length), sizeof(length));
+	ofs.write(type, length);
+
+	int index = getFieldIndex();
+	ofs.write(reinterpret_cast<const char*>(index), sizeof(index));
+
+	ofs.write(reinterpret_cast<const char*>(&feeForEscape), sizeof(feeForEscape));
 }
 
 MyString JailField::getPrintInfo() const

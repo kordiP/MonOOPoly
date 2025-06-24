@@ -15,7 +15,14 @@ void StartField::steppedOnBy(Player& player)
 
 void StartField::saveToFile(std::ofstream& ofs) const
 {
-    // todo
+    const char* type = "StartField";
+    int length = strlen(type);
+    ofs.write(reinterpret_cast<const char*>(&length), sizeof(length));
+    ofs.write(type, length);
+
+    int index = getFieldIndex();
+    ofs.write(reinterpret_cast<const char*>(&index), sizeof(index));
+    ofs.write(reinterpret_cast<const char*>(&rewardForPlayer), sizeof(rewardForPlayer));
 }
 
 MyString StartField::getPrintInfo() const

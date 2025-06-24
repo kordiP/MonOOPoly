@@ -17,5 +17,8 @@ Mortgage* Cottage::clone() const
 
 void Cottage::saveToFile(std::ofstream& ofs) const
 {
-    // todo
+    const char* type = "Cottage";
+    int length = strlen(type);
+    ofs.write(reinterpret_cast<const char*>(&length), sizeof(length));
+    ofs.write(type, length);
 }

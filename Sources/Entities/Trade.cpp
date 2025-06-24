@@ -47,3 +47,8 @@ const MyString& Trade::getSenderName() const
 {
 	return sender->getName();
 }
+
+void Trade::saveToFile(std::ofstream& ofs) const
+{
+	
+}

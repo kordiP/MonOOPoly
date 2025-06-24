@@ -1,5 +1,6 @@
 #pragma once
 #include "Command.h"
+#include "../Utilities/Serializer.h"
 
 class ContinueGame : public Command
 {

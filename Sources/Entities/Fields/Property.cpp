@@ -115,7 +115,36 @@ void Property::steppedOnBy(Player& player)
 
 void Property::saveToFile(std::ofstream& ofs) const
 {
-	// todo
+	const char* type = "Property";
+	int length = strlen(type);
+	ofs.write(reinterpret_cast<const char*>(&length), sizeof(length));
+	ofs.write(type, length);
+	ofs.write(reinterpret_cast<const char*>(getFieldIndex()), sizeof(getFieldIndex()));
+	ofs.write(reinterpret_cast<const char*>(&baseRent), sizeof(baseRent));
+	ofs.write(reinterpret_cast<const char*>(&basePurchase), sizeof(basePurchase));
+	ofs.write(reinterpret_cast<const char*>(&cottageBuildPrice), sizeof(cottageBuildPrice));
+	ofs.write(reinterpret_cast<const char*>(&castleBuildPrice), sizeof(castleBuildPrice));
+
+	MyString ownerName;
+	if (owner)
+	{
+		ownerName = owner->getName();
+	}
+
+	int len = strlen(ownerName.c_str());
+	ofs.write(reinterpret_cast<const char*>(&len), sizeof(len));
+	ofs.write(ownerName.c_str(), len);
+
+	int index = getFieldIndex();
+	ofs.write(reinterpret_cast<const char*>(&index), sizeof(index));
+
+	bool hasMort = (mortgage != nullptr ? true : false);
+	ofs.write(reinterpret_cast<const char*>(&hasMort), sizeof(hasMort));
+
+	if (hasMort)
+	{
+		mortgage->saveToFile(ofs);
+	}
 }
 
 MyString Property::getPrintInfo() const

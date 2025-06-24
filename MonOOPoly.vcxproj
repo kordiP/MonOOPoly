@@ -100,7 +100,6 @@
     <ClCompile Include="Sources\Utilities\MyString.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ResourceFiles\game.bin" />
     <None Include="SaveState\game.bin" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

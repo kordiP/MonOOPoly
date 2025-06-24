@@ -103,5 +103,13 @@ void Player::decreaseBalance(int amount)
 
 void Player::saveToFile(std::ofstream& ofs) const
 {
-	// todo
+	int length = strlen(name.c_str());
+	ofs.write(reinterpret_cast<const char*>(&length), sizeof(length));
+	ofs.write(name.c_str(), length);
+
+	ofs.write(reinterpret_cast<const char*>(&isInGame), sizeof(isInGame));
+	ofs.write(reinterpret_cast<const char*>(&hasToSkip), sizeof(hasToSkip));
+	ofs.write(reinterpret_cast<const char*>(&balance), sizeof(balance));
+	ofs.write(reinterpret_cast<const char*>(&consecPairs), sizeof(consecPairs));
+	ofs.write(reinterpret_cast<const char*>(&currentPostionIndex), sizeof(currentPostionIndex));	
 }
