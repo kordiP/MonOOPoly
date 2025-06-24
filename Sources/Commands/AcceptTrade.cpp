@@ -38,7 +38,7 @@ void AcceptTrade::execute() const
 			std::cout << "Too little assets! Disqualified!";
 			buyer.resign();
 			data.removeTradesFrom(buyer);
-			// todo - remove all properties of curpl
+			data.removeAllPropertiesFrom(buyer);
 		}
 
 		toForceSelling = true;

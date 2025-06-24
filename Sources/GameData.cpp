@@ -198,8 +198,28 @@ void GameData::forcePlayerToSell(Player& player, int totalAmountNeeded)
 		int index;
 		std::cin >> index;
 
-		// todo
+		if (index % 4 == 0)
+		{
+			throw std::invalid_argument("Non sellable field.");
+		}
+
+		Property* prop = dynamic_cast<Property*>(getFieldAt(index));
+		if (prop->isOwner(player))
+		{
+			player.increaseBalance(prop->getPurchasePrice());
+			prop->removeOwner();
+			prop->removeMortgage();
+		}
+		else
+		{
+			throw std::invalid_argument("This property is not yours.");
+		}
 	}
+}
+
+void GameData::removeAllPropertiesFrom(Player& player)
+{
+	board.removePropertiesOwner(player);
 }
 
 bool GameData::playerHasTradeOffer(int atField, Player& fromPlayer)
@@ -246,7 +266,7 @@ void GameData::groupPayTo(Player& player, int amount)
 	}
 }
 
-void GameData::checkTurn()
+bool GameData::checkTurn() 
 {
 	Player& currPlayer = getCurrentPlayer();
 	if (!isGameStarted())
@@ -259,29 +279,32 @@ void GameData::checkTurn()
 		throw std::logic_error("Game already finished.");
 	}
 
-	if (currentPlayerIndex == -1) // just in case something went wrong
-	{
-		currentPlayerIndex = 0;
-		return;
-	}
 	if (currPlayer.isResigned())
 	{
-		std::cout << "Your turn was skipped, you resigned." << std::endl;
-		performTurn();
+		std::cout << "Your turn was skipped, you resigned. Enter anything to continue." << std::endl;
+		MyString wait;
+		std::cin >> wait;
+
+		return false;
 	}
 
 	else if (currPlayer.toSkipTurn())
 	{
-		std::cout << "Your turn was skipped, because it needed to be." << std::endl;
+		std::cout << "Your turn was skipped, because it needed to be. Enter anything to continue." << std::endl;
+		MyString wait;
+		std::cin >> wait;
 		currPlayer.shouldSkipTurn(false);
-		performTurn();
+
+		return false;
 	}
 
 	else if (getCurrentPlayersCount() == 1)
 	{
 		gameEnded = true;
-		return;
+		return false;
 	}
+
+	return true;
 }
 
 void GameData::performTurn()

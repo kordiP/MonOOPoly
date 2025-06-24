@@ -109,6 +109,24 @@ int Board::getJailIndex() const
 	throw std::logic_error("Could not find jail index.");
 }
 
+void Board::removePropertiesOwner(Player& owner)
+{
+	for (size_t i = 0; i < getBoardSize(); i++)
+	{
+		if (i % 4 == 0)
+		{
+			continue;
+		}
+		Property* prop = dynamic_cast<Property*>(fields[i]);
+
+		if (prop->isOwner(owner))
+		{
+			prop->removeOwner();
+			prop->removeMortgage();
+		}
+	}
+}
+
 void Board::printPropertiesFor(Player& player)
 {
 	// coloring

@@ -32,6 +32,8 @@ public:
 	Field* getField(int index);
     const Field* getField(int index) const;
 	int getJailIndex() const;
+
+    void removePropertiesOwner(Player& owner);
     
     void printPropertiesFor(Player& player);
 

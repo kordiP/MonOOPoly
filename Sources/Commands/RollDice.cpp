@@ -7,10 +7,14 @@ void RollDice::execute() const
 		throw std::logic_error("Game not started.");
 	}
 
-	data.checkTurn();
+	if (!data.checkTurn())
+	{
+		data.performTurn();
+		return;
+	}
 
 	Player& curPl = data.getCurrentPlayer();
-
+	
 	size_t diceOne = rand() % 6 + 1;
 	size_t diceTwo = rand() % 6 + 1;
 

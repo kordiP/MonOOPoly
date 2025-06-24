@@ -56,13 +56,14 @@ public:
     void proposeTrade(Trade& trade);
 
     void forcePlayerToSell(Player& player, int totalAmountNeeded);
+    void removeAllPropertiesFrom(Player& player);
 
     void generateRandomDeck(size_t size);
 
     void groupPayFrom(Player& player, int amount);
     void groupPayTo(Player& player, int amount);
 
-    void checkTurn();
+    bool checkTurn();
     void performTurn();
 
 	int getCurrentPlayerIndex() const;

@@ -14,6 +14,6 @@ void Resign::execute() const
 	curPl.resign();
 
 	data.removeTradesFrom(curPl);
-	// todo - remove all properties of curpl
+	data.removeAllPropertiesFrom(curPl);
 	data.printBoard();
 }
