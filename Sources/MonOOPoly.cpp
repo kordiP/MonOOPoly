@@ -6,6 +6,7 @@
 #include "../Headers/Utilities/HeterogenousContainer.hpp"
 #include "../Headers/Utilities/MyVector.hpp"
 #include "../Headers/Utilities/Stack.hpp"
+
 int main() 
 {
 	MonopolyEngine& engine = MonopolyEngine::getInstance();
