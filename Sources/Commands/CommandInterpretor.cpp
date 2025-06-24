@@ -62,6 +62,10 @@ void CommandInterpretor::executeCommand(const MyString& command)
 	{
 		currCommand = new ViewTrades();
 	}
+	else if (command == "EndGame")
+	{
+		return;
+	}
 	else
 	{
 		currCommand = nullptr;

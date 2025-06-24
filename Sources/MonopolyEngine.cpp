@@ -13,18 +13,19 @@ void MonopolyEngine::run()
 	try
 	{
 		CommandInterpretor& commandReader = CommandInterpretor::getInstance();
+		Serializer& ser = Serializer::getInstance();
 		MyString input;
 		commandReader.executeCommand("Initial");
 
 		do
 		{
+			input = "";
 			std::cin >> input;
 			commandReader.executeCommand(input);
-			input = "";
-		} while (input != "EndGame" || !data.isGameOver());
+		} while (input != "EndGame" && !data.isGameOver());
 
 		std::cout << "Exiting game. Progress will be saved."; 
-		// todo -> save to binary
+		ser.createGameSave();
 	}
 	catch (const std::exception& e)
 	{

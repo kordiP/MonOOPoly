@@ -32,6 +32,7 @@ public:
     void printBoard();
     void clearBoard();
     void addPlayer(const MyString& playerName, char fig);
+    int getBoardSize() const;
 
     bool isGameStarted() const;
 	bool isGameOver() const;
@@ -66,7 +67,10 @@ public:
     bool checkTurn();
     void performTurn();
 
+    int getPlayersCount() const;
+
 	int getCurrentPlayerIndex() const;
 	Player& getPlayer(const MyString& name);
+	Player& getPlayerAt(int id);
 	Player& getCurrentPlayer();
 };

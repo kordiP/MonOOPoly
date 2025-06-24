@@ -1,7 +1,8 @@
 #pragma once
 #include "../Utilities/MyString.h"
+#include "../GameData.h"
 
-namespace 
+namespace
 {
 	const MyString BOARD_LOCATION = "board.dll";
 	const MyString PLAYERS_LOCATION = "players.dll";
@@ -12,6 +13,7 @@ namespace
 class Serializer
 {
 private:
+	GameData& data = GameData::getInstance();
 	Serializer() = default;
 	~Serializer() = default;
 

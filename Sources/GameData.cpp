@@ -136,6 +136,11 @@ void GameData::printPlayerTrades(Player& player)
 	bank.printAllTradesFor(player);
 }
 
+int GameData::getBoardSize() const
+{
+	return board.getBoardSize();
+}
+
 bool GameData::isEligibleForMortgage(int fieldAt)
 {
 	Property& prop = getProperty(fieldAt);
@@ -319,6 +324,11 @@ void GameData::performTurn()
 	printBoard();
 }
 
+int GameData::getPlayersCount() const
+{
+	return players.getSize();
+}
+
 int GameData::getCurrentPlayerIndex() const
 {
 	return currentPlayerIndex;
@@ -335,6 +345,11 @@ Player& GameData::getPlayer(const MyString& name)
 	}
 
 	throw std::invalid_argument("Player with given name does not exist.");
+}
+
+Player& GameData::getPlayerAt(int id)
+{
+	return players[id];
 }
 
 Player& GameData::getCurrentPlayer()
