@@ -11,10 +11,16 @@ Field* CardField::clone() const
 
 void CardField::steppedOnBy(Player& player)
 {
+    std::cout << "You draw a card." << std::endl;
     deck.drawCard(player);
 }
 
 void CardField::saveToFile(std::ofstream& ofs) const
 {
     // todo
+}
+
+MyString CardField::getPrintInfo() const
+{
+    return "CARD";
 }

@@ -53,8 +53,6 @@ public:
     bool isEligibleForMortgage(int fieldAt);
 
     void removeTradesFrom(Player& pl);
-    void sellAllFieldsFrom(Player& pl);
-
     void proposeTrade(Trade& trade);
 
     void forcePlayerToSell(Player& player, int totalAmountNeeded);
@@ -64,6 +62,7 @@ public:
     void groupPayFrom(Player& player, int amount);
     void groupPayTo(Player& player, int amount);
 
+    void checkTurn();
     void performTurn();
 
 	int getCurrentPlayerIndex() const;

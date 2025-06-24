@@ -7,9 +7,7 @@ void RollDice::execute() const
 		throw std::logic_error("Game not started.");
 	}
 
-	data.clearBoard();
-
-	data.performTurn();
+	data.checkTurn();
 
 	Player& curPl = data.getCurrentPlayer();
 
@@ -31,6 +29,7 @@ void RollDice::execute() const
 
 		curPl.moveTo(jailAt);
 		data.getFieldAt(jailAt)->steppedOnBy(curPl);
+		data.performTurn();
 		return;
 	}
 
@@ -51,22 +50,55 @@ void RollDice::execute() const
 			std::cout << "You will now go to the free parking area." << std::endl;
 			curPl.decreaseBalance(data.getJailTax());
 			diceOne = diceTwo = 2;
+			data.performTurn();
 		}
 		else
 		{
+			std::cout << "Okay, next turn you will have the same option. Press anything to continue." << std::endl;
+			MyString wait;
+			std::cin >> wait;
 			curPl.resetPairCount();
+			curPl.shouldSkipTurn(false);
+			data.performTurn();
+
+			data.clearBoard();
+			data.printBoard();
 			return;
 		}
 	}
 
 	curPl.moveBy(diceOne + diceTwo);
+	std::cout << "Postition now: " << curPl.getPositionIndex() << std::endl;
 
 	// if this is < 0 it means we have passed the start
-	if (curPl.getPositionIndex() - (diceOne + diceTwo) < 0)
+	int diff = curPl.getPositionIndex() - (diceOne + diceTwo);
+	if (diff < 0)
 	{
 		data.getFieldAt(0)->steppedOnBy(curPl);
 	}
 
 	data.getFieldAt(curPl.getPositionIndex())->steppedOnBy(curPl);
+
+	if (curPl.getBalance() < 0)
+	{
+		data.forcePlayerToSell(curPl, curPl.getBalance());
+	}
+	MyString wait;
+	std::cout << "Enter anything to continue. ";
+	std::cin >> wait;
+
+	data.clearBoard();
+	if (diceOne == diceTwo)
+	{
+		if (curPl.getPositionIndex() == jailAt)
+		{
+			data.performTurn();
+		}
+	}
+	else
+	{
+		data.performTurn();
+	}
+	
 	data.printBoard();
 }

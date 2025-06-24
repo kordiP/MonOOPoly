@@ -6,7 +6,7 @@ class GameData;
 class GroupPaymentCard : public Card
 {
 private:
-	int amountToPay = 0;
+	int amountToPay = 100;
 	GameData& data;
 public:
 	GroupPaymentCard();

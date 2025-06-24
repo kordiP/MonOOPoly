@@ -33,10 +33,6 @@ void SellProperty::execute() const
 
 		switch (neighbourPos)
 		{
-		case 1:
-			n1 = data.getProperty(fieldIndex + 1);
-			n2 = data.getProperty(fieldIndex + 2);
-			break;
 		case 2:
 			n1 = data.getProperty(fieldIndex + 1);
 			n2 = data.getProperty(fieldIndex - 1);

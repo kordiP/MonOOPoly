@@ -47,9 +47,25 @@ bool Bank::playerHasTradeOffer(int atField, Player& fromPlayer)
     return false;
 }
 
+void Bank::addTrade(Trade& trade)
+{
+    trades.pushBack(trade);
+}
+
 void Bank::acceptTrade(int tradeIndex)
 {
     trades[tradeIndex].acceptOffer();
+}
+
+void Bank::removeTradesFrom(Player& player)
+{
+    for (size_t i = 0; i < trades.getSize(); i++)
+    {
+        if (trades[i].getReceiverName() == player.getName() || trades[i].getSenderName() == player.getName())
+        {
+            trades.removeAt(i);
+        }
+    }
 }
 
 int Bank::getTradeAmount(int tradeIndex)

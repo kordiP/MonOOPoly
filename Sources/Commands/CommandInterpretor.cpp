@@ -58,6 +58,16 @@ void CommandInterpretor::executeCommand(const MyString& command)
 	{
 		currCommand = new HelpMenu();
 	}
+	else if (command == "ViewTrades")
+	{
+		currCommand = new ViewTrades();
+	}
+	else
+	{
+		currCommand = nullptr;
+		std::cout << "Not recognized command." << std::endl;
+		return;
+	}
 
 	currCommand->execute();
 }

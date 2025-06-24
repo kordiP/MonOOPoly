@@ -35,5 +35,8 @@ public:
     
     void printPropertiesFor(Player& player);
 
+    void printFirstRow(const Field* curF) const;
+    void printSplitLine(int) const;
+    void printEmpty() const;
 	void printBoard() const;
 };

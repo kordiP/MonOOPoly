@@ -7,8 +7,6 @@ void AcceptTrade::execute() const
 		throw std::logic_error("Game not started.");
 	}
 
-	data.clearBoard();
-
 	Player& curPl = data.getCurrentPlayer();
 
 	std::cout << "Enter for which property the offer is: ";
@@ -19,25 +17,28 @@ void AcceptTrade::execute() const
 	MyString fromPlayer;
 	std::cin >> fromPlayer;
 
-	Player& fromPl = data.getPlayer(fromPlayer);
+	Player& buyer = data.getPlayer(fromPlayer);
 	
-	if (!data.playerHasTradeOffer(fieldId, fromPl))
+	if (!data.playerHasTradeOffer(fieldId, buyer))
 	{
 		throw std::invalid_argument("Trade not found or already accepted.");
 	}
 
-	int tradeIndex = data.getTradeIndexInList(fieldId, fromPl);
+	int tradeIndex = data.getTradeIndexInList(fieldId, buyer);
 	int tradeAmount = data.getTradeAmount(tradeIndex);
 
 	Property& prop = data.getProperty(fieldId);
 
 	bool toForceSelling = false;
 
-	if (!curPl.hasEnoughBalance(tradeAmount))
+	if (!buyer.hasEnoughBalance(tradeAmount))
 	{
-		if (!curPl.hasEnoughAssets(tradeAmount))
+		if (!buyer.hasEnoughAssets(tradeAmount))
 		{
-			throw std::logic_error("Not possible for user to collect enough funds.");
+			std::cout << "Too little assets! Disqualified!";
+			buyer.resign();
+			data.removeTradesFrom(buyer);
+			// todo - remove all properties of curpl
 		}
 
 		toForceSelling = true;
@@ -45,16 +46,16 @@ void AcceptTrade::execute() const
 
 	prop.removeMortgage();
 	prop.removeOwner();
-	fromPl.increaseBalance(tradeAmount);
+	curPl.increaseBalance(tradeAmount);
 
-	prop.setOwner(curPl);
-	curPl.decreaseBalance(tradeAmount);
+	prop.setOwner(buyer);
+	buyer.decreaseBalance(tradeAmount);
 
 	data.acceptTrade(tradeIndex);
 	data.printBoard();
 
 	if (toForceSelling)
 	{
-		data.forcePlayerToSell(curPl, tradeAmount);
+		data.forcePlayerToSell(buyer, tradeAmount);
 	}
 }

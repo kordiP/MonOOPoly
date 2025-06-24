@@ -11,7 +11,7 @@ private:
 
 	MyString name;
 	char figure = 0;
-	size_t currentPostionIndex = -1;
+	size_t currentPostionIndex = 0;
 	double balance = 1500;
 public:
 	Player() = default;

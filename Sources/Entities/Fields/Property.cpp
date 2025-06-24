@@ -8,6 +8,12 @@ Property::Property(int index, const MyString& descr, int color, int baseRent, in
 	castleBuildPrice = castleBuild;
 }
 
+Property::~Property()
+{
+	owner = nullptr;
+	mortgage = nullptr;
+}
+
 bool Property::hasMortgage() const
 {
 	return mortgage == nullptr;
@@ -43,6 +49,11 @@ void Property::setOwner(Player& player)
 	owner = &player;
 }
 
+const Player* Property::getOwner() const
+{
+	return owner;
+}
+
 void Property::removeOwner()
 {
 	owner = nullptr;
@@ -66,7 +77,7 @@ void Property::removeMortgage()
 
 bool Property::isOwner(Player& player)
 {
-	return owner == &player;
+	return owner->getName() == player.getName();
 }
 
 Field* Property::clone() const
@@ -76,9 +87,10 @@ Field* Property::clone() const
 
 void Property::steppedOnBy(Player& player)
 {
+	std::cout << "Description: " << getDescription() << std::endl;
 	if (owner == nullptr)
 	{
-		std::cout << "This property is unoccupied yet. Type \"Buy\" to buy it for " << basePurchase;
+		std::cout << "This property is unoccupied yet. Type \"Buy\" to buy it for " << basePurchase << std::endl;
 		MyString resp;
 		std::cin >> resp;
 
@@ -95,11 +107,38 @@ void Property::steppedOnBy(Player& player)
 		{
 			finalAmount *= mortgage->getRentIncrease();
 		}
-		std::cout << "You stepped on another player's property, the rent is " << finalAmount;
+		std::cout << "You stepped on another player's property, the rent is " << finalAmount << std::endl;
+		player.decreaseBalance(finalAmount);
+		owner->increaseBalance(finalAmount);
 	}
 }
 
 void Property::saveToFile(std::ofstream& ofs) const
 {
 	// todo
+}
+
+MyString Property::getPrintInfo() const
+{
+	MyString res;
+	int emptyCnt = 0;
+	res += getFieldIndex();
+
+	if (mortgage != nullptr)
+	{
+		if (dynamic_cast<Castle*>(mortgage)) res += '^';
+		else res += '=';
+
+		if (getFieldIndex() < 10) emptyCnt = 2;
+		else emptyCnt = 1;
+	}
+	else
+	{
+		if (getFieldIndex() < 10) emptyCnt = 3;
+		else emptyCnt = 2;
+	}
+
+	for (size_t i = 0; i < emptyCnt; i++) res += ' ';
+
+	return res;
 }

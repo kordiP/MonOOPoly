@@ -8,6 +8,7 @@
 #include "RollDice.h"
 #include "SellProperty.h"
 #include "SetMortgage.h"
+#include "ViewTrades.h"
 #include "StartNewGame.h"
 #include "WelcomeScreen.h"
 #include "../Utilities/MyString.h"

@@ -23,6 +23,8 @@ public:
 	char& operator[](int index);
 
 	MyString& operator+=(const MyString& mstr);
+	MyString& operator+=(int number);
+	MyString& operator+=(char c);
 
 	friend std::ostream& operator<<(std::ostream& os, const MyString& mstr);
 	friend std::istream& operator>>(std::istream& is, MyString& mstr);

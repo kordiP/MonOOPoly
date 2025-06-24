@@ -17,6 +17,7 @@ Field* JailField::clone() const
 
 void JailField::steppedOnBy(Player& player)
 {
+	std::cout << "You are in jail! You will skip the next move.";
 	player.shouldSkipTurn(true);
 	player.resetPairCount();
 }
@@ -24,4 +25,9 @@ void JailField::steppedOnBy(Player& player)
 void JailField::saveToFile(std::ofstream& ofs) const
 {
 	// todo
+}
+
+MyString JailField::getPrintInfo() const
+{
+	return "JAIL";
 }

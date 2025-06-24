@@ -13,4 +13,5 @@ public:
 	Field* clone() const override;
 	void steppedOnBy(Player& player) override;// drawCard from deck, card->applyEffect(player)
 	void saveToFile(std::ofstream& ofs) const override;
+	MyString getPrintInfo() const override;
 };

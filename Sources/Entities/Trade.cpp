@@ -20,7 +20,7 @@ void Trade::printTrade() const
 	std::cout << "Receiver: " << receiver->getName() << std::endl;
 	std::cout << "Offer: " << offer << std::endl;
 	std::cout << "Field at: " << fieldIndex << std::endl;
-	std::cout << "Amount requested: " << amount << std::endl;
+	std::cout << "Amount requested for buying: " << amount << std::endl;
 }
 
 int Trade::getRequestedAmount() const

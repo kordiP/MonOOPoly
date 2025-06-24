@@ -21,7 +21,9 @@ public:
     int getTradeIndexInList(int fieldId, Player& from);
     bool playerHasTradeOffer(int atField, Player& fromPlayer);
 
+    void addTrade(Trade& trade);
     void acceptTrade(int tradeIndex);
+    void removeTradesFrom(Player& player);
 
     void printAllTradesFor(Player& player);
     int getTradeAmount(int tradeIndex);

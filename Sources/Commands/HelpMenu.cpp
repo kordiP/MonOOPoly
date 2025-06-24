@@ -16,7 +16,9 @@ void HelpMenu::execute() const
 	std::cout << "AcceptTrade: accept given ongoing trade. " << std::endl << std::endl;
 
 	std::cout << "Any other input needed by you will have instructions." << std::endl;
+	std::cout << "^ means castle, = means cottage (mortgage)." << std::endl;
 
+	std::cout << "IMPORTANT! When asked to enter anything to continue, input any text THEN press enter. Thank you!" << std::endl;
 	std::cout << "Press enter to continue. " << std::endl;
 	MyString ans;
 	std::cin >> ans;

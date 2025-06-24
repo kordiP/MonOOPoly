@@ -16,3 +16,8 @@ void CarPark::saveToFile(std::ofstream& ofs) const
 {
     // todo
 }
+
+MyString CarPark::getPrintInfo() const
+{
+    return "PARK";
+}

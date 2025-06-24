@@ -20,16 +20,17 @@ private:
 public:
 	Property() = default;
 	Property(int index, const MyString& descr, int color, int baseRent, int basePur, int cottageBuild, int castleBuild);
+	~Property();
 
 	bool hasMortgage() const;
 	const Mortgage* getMortgage() const;
-	const MyString& getColor() const;
 	int getRent() const;
 	int getPurchasePrice() const;
 	int getCottageBuildPrice() const;
 	int getCastleBuildPrice() const;
 
 	void setOwner(Player& player);
+	const Player* getOwner() const;
 	void removeOwner();
 
 	void buyMortgage(Mortgage& mort);
@@ -39,4 +40,5 @@ public:
 	Field* clone() const override;
 	void steppedOnBy(Player& player) override;
 	void saveToFile(std::ofstream& ofs) const override;
+	MyString getPrintInfo() const override;
 };

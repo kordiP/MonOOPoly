@@ -4,7 +4,7 @@
 class MovePositionCard : public Card
 {
 private:
-	int moveBy;
+	int moveBy = 3;
 public:
 	MovePositionCard() = default;
 	MovePositionCard(int moveBy);

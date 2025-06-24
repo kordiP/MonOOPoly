@@ -51,9 +51,9 @@ void StartNewGame::execute() const
 
 	// we have 3 types of cards -> two of each, will be circulated to bottom when drawn
 	size_t cardDeckSize = data.getCurrentPlayersCount() * 6;
-
+	
 	data.generateRandomDeck(cardDeckSize);
 	data.generateBoard();
-	data.performTurn();
+	data.clearBoard();
 	data.printBoard();
 }

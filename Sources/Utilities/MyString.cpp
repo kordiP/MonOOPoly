@@ -118,6 +118,53 @@ MyString& MyString::operator+=(const MyString& mstr)
     return *this;
 }
 
+MyString& MyString::operator+=(int number)
+{
+    if (number < 0) 
+    {
+        *this += '-';
+        number = -number;
+    }
+
+    char digits[20];
+    int len = 0;
+
+    if (number == 0) 
+    {
+        digits[len++] = '0';
+    }
+    else 
+    {
+        while (number > 0) 
+        {
+            digits[len++] = '0' + (number % 10);
+            number /= 10;
+        }
+    }
+
+    for (int i = len - 1; i >= 0; --i) 
+    {
+        *this += digits[i];
+    }
+
+    return *this;
+}
+
+MyString& MyString::operator+=(char c)
+{
+    char* newStr = new char[size + 2]; // +1 for char, +1 for '\0'
+    for (size_t i = 0; i < size; ++i)
+        newStr[i] = str[i];
+    newStr[size] = c;
+    newStr[size + 1] = '\0';
+
+    delete[] str;
+    str = newStr;
+    size++;
+
+    return *this;
+}
+
 bool operator==(const MyString& lhs, const MyString& rhs)
 {
     if (strcmp(lhs.c_str(), rhs.c_str()) != 0)

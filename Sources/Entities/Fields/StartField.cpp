@@ -9,10 +9,16 @@ Field* StartField::clone() const
 
 void StartField::steppedOnBy(Player& player)
 {
+    std::cout << "Way to GO! Here's " << rewardForPlayer << std::endl;
     player.increaseBalance(rewardForPlayer);
 }
 
 void StartField::saveToFile(std::ofstream& ofs) const
 {
     // todo
+}
+
+MyString StartField::getPrintInfo() const
+{
+    return " GO ";
 }

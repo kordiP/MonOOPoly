@@ -13,18 +13,21 @@ void CardDeck::generateRandomDeck(size_t size)
 		Card* card;
 		size_t num = rand() % 3 + 1;
 
+		int amountRnd = rand() % 200 + 100;
+		int moveRnd = rand() % 10 - 5;
+
 		switch (num)
 		{
 		case 1:
-			card = new GroupPaymentCard();
+			card = new GroupPaymentCard(amountRnd);
 			deck.push(*card);
 			break;
 		case 2:
-			card = new PaymentCard();
+			card = new PaymentCard(amountRnd);
 			deck.push(*card);
 			break;
 		case 3:
-			card = new MovePositionCard();
+			card = new MovePositionCard(moveRnd);
 			deck.push(*card);
 			break;
 		}
@@ -33,5 +36,10 @@ void CardDeck::generateRandomDeck(size_t size)
 
 void CardDeck::drawCard(Player& player)
 {
-	deck.popToBottom()->applyEffectTo(player);
+	Card* c = deck.popToBottom();
+	c->printCardInfo();
+	MyString wait;
+	std::cout << "Press enter to continue." << std::endl;
+	std::cin >> wait;
+	c->applyEffectTo(player);
 }

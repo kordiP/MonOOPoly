@@ -16,11 +16,11 @@ void GroupPaymentCard::printCardInfo() const
 {
 	if (amountToPay <= 0)
 	{
-		std::cout << "All players need to pay current player." << std::endl;
+		std::cout << "All players need to pay you " << amountToPay << std::endl;
 	}
 	else
 	{
-		std::cout << "Current player gives everyone money." << std::endl;
+		std::cout << "You give everyone money." << amountToPay << std::endl;
 	}
 }
 

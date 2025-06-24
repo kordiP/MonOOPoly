@@ -4,7 +4,7 @@
 class PaymentCard : public Card
 {
 private:
-	int amount;
+	int amount = 100;
 public:
 	PaymentCard() = default;
 	PaymentCard(int amount);

@@ -9,7 +9,9 @@
 #include "../Headers/Utilities/MyString.h"
 #include <iostream>
 #include <ostream>
-#include <stdexcept>
+#include <windows.h>
+#include "../Headers/Utilities/Colors.h"
+
 GameData::GameData() : board(Board::getInstance()), bank(Bank::getInstance()), deck(CardDeck::getInstance()) {}
 
 GameData& GameData::getInstance()
@@ -21,11 +23,32 @@ GameData& GameData::getInstance()
 void GameData::generateBoard()
 {
 	board.generate();
+	currentPlayerIndex = 0;
 }
 
 void GameData::printBoard()
 {
+	HANDLE hConsole;
+	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(hConsole, Colors::DEFAULT_COLOR);
+
+	Player& curPl = getCurrentPlayer();
 	board.printBoard();
+
+	for (size_t i = 0; i < players.getSize(); i++)
+	{
+		if (i == currentPlayerIndex)
+		{
+			SetConsoleTextAttribute(hConsole, Colors::DEFAULT_INVERSE);
+			std::cout << ">";
+			SetConsoleTextAttribute(hConsole, Colors::DEFAULT_COLOR);
+
+		}
+		std::cout << " " << players[i].getFigure()
+			<< " | name: " << players[i].getName()
+			<< " | current position: " << players[i].getPositionIndex()
+			<< " | balance: " << players[i].getBalance() << "$" << std::endl;
+	}
 }
 
 void GameData::clearBoard()
@@ -55,7 +78,7 @@ void GameData::addPlayer(const MyString& playerName, char fig)
 
 bool GameData::isGameStarted() const
 {
-	if (players.getSize() <= 0 || currentPlayerIndex == -1)
+	if (players.getSize() <= 0)
 	{
 		return false;
 	}
@@ -110,7 +133,7 @@ void GameData::acceptTrade(int tradeIndex)
 
 void GameData::printPlayerTrades(Player& player)
 {
-	// todo
+	bank.printAllTradesFor(player);
 }
 
 bool GameData::isEligibleForMortgage(int fieldAt)
@@ -123,24 +146,43 @@ bool GameData::isEligibleForMortgage(int fieldAt)
 		return false;
 	}
 
-	// todo
+	int index = prop.getFieldIndex();
+	int neighbourPos = prop.getFieldIndex() % 4;
+
+	Property& n1 = getProperty(index + 1);
+	Property& n2 = getProperty(index + 2);
+
+	switch (neighbourPos)
+	{
+	case 2:
+		n1 = getProperty(index + 1);
+		n2 = getProperty(index - 1);
+		break;
+	case 3:
+		n1 = getProperty(index - 1);
+		n2 = getProperty(index - 2);
+		break;
+	default:
+		throw std::logic_error("Something went wrong in calculating neighbours' positions.");
+		break;
+	}
+
+	if (!n1.isOwner(curPl) || !n2.isOwner(curPl))
+	{
+		return false;
+	}
 
 	return true;
 }
 
 void GameData::removeTradesFrom(Player& pl)
 {
-	// todo
-}
-
-void GameData::sellAllFieldsFrom(Player& pl)
-{
-	// todo
+	bank.removeTradesFrom(pl);
 }
 
 void GameData::proposeTrade(Trade& trade)
 {
-	// todo
+	bank.addTrade(trade);
 }
 
 void GameData::forcePlayerToSell(Player& player, int totalAmountNeeded)
@@ -204,9 +246,9 @@ void GameData::groupPayTo(Player& player, int amount)
 	}
 }
 
-// just handle who is at turn / who is currPlayer
-void GameData::performTurn()
+void GameData::checkTurn()
 {
+	Player& currPlayer = getCurrentPlayer();
 	if (!isGameStarted())
 	{
 		throw std::logic_error("Not initialized, cannot perform turn.");
@@ -217,33 +259,41 @@ void GameData::performTurn()
 		throw std::logic_error("Game already finished.");
 	}
 
-	if (currentPlayerIndex == -1 || currentPlayerIndex >= players.getSize())
+	if (currentPlayerIndex == -1) // just in case something went wrong
 	{
 		currentPlayerIndex = 0;
+		return;
 	}
-
-	Player& currPlayer = players[currentPlayerIndex];
-
 	if (currPlayer.isResigned())
 	{
-		currentPlayerIndex++;
-		return;
+		std::cout << "Your turn was skipped, you resigned." << std::endl;
+		performTurn();
 	}
 
-	if (currPlayer.toSkipTurn())
+	else if (currPlayer.toSkipTurn())
 	{
+		std::cout << "Your turn was skipped, because it needed to be." << std::endl;
 		currPlayer.shouldSkipTurn(false);
-		currentPlayerIndex++;
-		return;
+		performTurn();
 	}
 
-	if (getCurrentPlayersCount() == 1)
+	else if (getCurrentPlayersCount() == 1)
 	{
 		gameEnded = true;
 		return;
 	}
+}
 
+void GameData::performTurn()
+{
+	clearBoard();
 	currentPlayerIndex++;
+	
+	if (currentPlayerIndex >= players.getSize())
+	{
+		currentPlayerIndex = 0;
+	}
+	printBoard();
 }
 
 int GameData::getCurrentPlayerIndex() const

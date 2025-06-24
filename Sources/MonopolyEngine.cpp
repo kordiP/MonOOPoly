@@ -20,6 +20,7 @@ void MonopolyEngine::run()
 		{
 			std::cin >> input;
 			commandReader.executeCommand(input);
+			input = "";
 		} while (input != "EndGame" || !data.isGameOver());
 
 		std::cout << "Exiting game."; 

@@ -10,4 +10,5 @@ public:
 	Field* clone() const override;
 	void steppedOnBy(Player& player) override;
 	void saveToFile(std::ofstream& ofs) const override;
+	MyString getPrintInfo() const override;
 };
